@@ -17,6 +17,7 @@ body {
     background: #f8fafc;
 }
 
+
 @theme inline {
     --font-heading: var(--font-sans);
     --font-sans: 'Geist Variable', sans-serif;
@@ -58,17 +59,22 @@ body {
     --radius-2xl: calc(var(--radius) * 1.8);
     --radius-3xl: calc(var(--radius) * 2.2);
     --radius-4xl: calc(var(--radius) * 2.6);
+    --color-brand-primary: var(--brand-primary);
+    --color-brand-primary-dark: var(--brand-primary-dark);
+    --color-brand-dark: var(--brand-dark);
+    --color-brand-grey: var(--brand-grey);
+
 }
 
 :root {
-    --background: oklch(1 0 0);
+    --background: #0D3222;
     --foreground: oklch(0.145 0 0);
     --card: oklch(1 0 0);
     --card-foreground: oklch(0.145 0 0);
     --popover: oklch(1 0 0);
     --popover-foreground: oklch(0.145 0 0);
-    --primary: oklch(0.205 0 0);
-    --primary-foreground: oklch(0.985 0 0);
+    --primary: #36E165;
+    --primary-foreground: #0D3222;
     --secondary: oklch(0.97 0 0);
     --secondary-foreground: oklch(0.205 0 0);
     --muted: oklch(0.97 0 0);
@@ -93,6 +99,11 @@ body {
     --sidebar-accent-foreground: oklch(0.205 0 0);
     --sidebar-border: oklch(0.922 0 0);
     --sidebar-ring: oklch(0.708 0 0);
+    --brand-primary: #36E165;
+    --brand-primary-dark: #246435;
+    --brand-dark: #0D3222;  
+    --brand-grey: #686b70;
+
 }
 
 .dark {
@@ -139,4 +150,5 @@ body {
   html {
     @apply font-sans;
     }
+    
 }

@@ -1,43 +1,34 @@
 import { Bell } from "lucide-react";
-import { Avatar, AvatarFallback } from "../ui/avatar";
-// import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
 function Navbar() {
+  return (
+    <header className="bg-white border-b h-20 flex items-center justify-between px-8">
 
-    return (
+      <div>
 
-        <header className="bg-white h-20 border-b flex items-center justify-between px-8">
+        <h2 className="text-xl font-semibold">
+          Dashboard
+        </h2>
 
-            <div>
+      </div>
 
-                <h2 className="text-2xl font-bold">
+      <div className="flex items-center gap-6">
 
-                    Dashboard
+        <Bell
+          className="cursor-pointer"
+          size={22}
+        />
 
-                </h2>
+        <div className="w-10 h-10 rounded-full bg-slate-900 text-white flex items-center justify-center font-semibold">
 
-            </div>
+          RC
 
-            <div className="flex items-center gap-6">
+        </div>
 
-                <Bell className="cursor-pointer" />
+      </div>
 
-                <Avatar>
-
-                    <AvatarFallback>
-
-                        RC
-
-                    </AvatarFallback>
-
-                </Avatar>
-
-            </div>
-
-        </header>
-
-    );
-
+    </header>
+  );
 }
 
 export default Navbar;

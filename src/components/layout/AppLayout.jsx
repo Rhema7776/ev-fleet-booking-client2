@@ -1,23 +1,17 @@
-import Sidebar from "./Sidebar";
+import { Outlet } from "react-router-dom";
 import Navbar from "./Navbar";
 
-function AppLayout({ children }) {
+function AppLayout() {
     return (
-        <div className="flex min-h-screen bg-slate-100">
+        <div className=" bg-gray-700 px-5 pt-6 pb-8">
 
-            <Sidebar />
+            {/* <Navbar /> */}
 
-            <div className="flex flex-col flex-1">
+            <main className="mx-auto w-full max-w-md min-h-[calc(100vh-64px)] bg-[#F8F9FA] overflow-x-hidden">
 
-                <Navbar />
+                <Outlet />
 
-                <main className="flex-1 p-8">
-
-                    {children}
-
-                </main>
-
-            </div>
+            </main>
 
         </div>
     );

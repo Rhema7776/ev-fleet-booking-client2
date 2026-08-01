@@ -1,86 +1,58 @@
-import {
-  LayoutDashboard,
-  Truck,
-  Car,
-  CalendarDays,
-  Users,
-  Settings,
-} from "lucide-react";
+import { NavLink } from "react-router-dom";
+import navigation from "../../data/navigation";
 
-const menuItems = [
-  {
-    title: "Dashboard",
-    icon: LayoutDashboard,
-  },
-  {
-    title: "Fleet Owners",
-    icon: Truck,
-  },
-  {
-    title: "Vehicles",
-    icon: Car,
-  },
-  {
-    title: "Bookings",
-    icon: CalendarDays,
-  },
-  {
-    title: "Agents",
-    icon: Users,
-  },
-  {
-    title: "Settings",
-    icon: Settings,
-  },
-];
 
 function Sidebar() {
-  return (
-    <aside className="w-72 bg-slate-900 text-white flex flex-col">
 
-      <div className="border-b border-slate-800 p-8">
+    return (
 
-        <h1 className="text-2xl font-bold">
+        <aside className="w-72 bg-slate-900 text-white flex flex-col">
 
-          EV Fleet
+            <div className="h-20 flex items-center px-8 border-b border-slate-800">
 
-        </h1>
+                <h1 className="text-2xl font-bold">
 
-        <p className="text-slate-400 text-sm mt-1">
+                    EV Fleet
 
-          Booking Platform
+                </h1>
 
-        </p>
+            </div>
 
-      </div>
+            <nav className="flex-1 mt-8">
 
-      <nav className="flex-1 p-4">
+                {navigation.map((item) => {
 
-        {menuItems.map((item) => {
+                    const Icon = item.icon;
 
-          const Icon = item.icon;
+                    return (
+                      <NavLink
+                          key={item.title}
+                          to={item.path}
+                          className={({ isActive }) =>
+                              `mx-4 mb-2 flex items-center gap-4 px-5 py-4 rounded-xl transition-all duration-300 ${
+                                  isActive
+                                      ? "bg-blue-600 text-white"
+                                      : "hover:bg-slate-800"
+                              }`
+                          }
+                      >
+                          <Icon size={22} />
 
-          return (
+                          <span>{item.title}</span>
+                      </NavLink>
 
-            <button
-              key={item.title}
-              className="w-full flex items-center gap-4 px-4 py-3 rounded-xl hover:bg-slate-800 transition-all duration-200 mb-2 cursor-pointer"
-            >
+                        
 
-              <Icon size={20} />
+                    );
 
-              <span>{item.title}</span>
+                })}
 
-            </button>
+            </nav>
 
-          );
+        </aside>
 
-        })}
+    );
 
-      </nav>
-
-    </aside>
-  );
 }
 
 export default Sidebar;
