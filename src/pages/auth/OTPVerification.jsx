@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Loader2 } from "lucide-react";
 import { useLocation, useNavigate } from "react-router-dom";
 
-import Button from "@/components/ui/Button";
+import Button from "@/components/ui/button";
 
 import AuthContainer from "@/components/auth/AuthContainer";
 import AuthBackButton from "@/components/auth/AuthBackButton";

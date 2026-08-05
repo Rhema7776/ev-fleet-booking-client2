@@ -7,7 +7,7 @@ import AuthHeader from "@/components/auth/AuthHeader";
 import AuthProgressBar from "@/components/auth/AuthProgressBar";
 import PasswordInput from "@/components/auth/PasswordInput";
 
-import Button from "@/components/ui/Button";
+import Button from "@/components/ui/button";
 
 const CreatePassword = () => {
 

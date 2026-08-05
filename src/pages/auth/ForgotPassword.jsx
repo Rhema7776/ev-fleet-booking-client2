@@ -9,7 +9,7 @@ import AuthHeader from "@/components/auth/AuthHeader";
 import AuthFooter from "@/components/auth/AuthFooter";
 
 import TextInput from "@/components/ui/TextInput";
-import Button from "@/components/ui/Button";
+import Button from "@/components/ui/button";
 
 const ForgotPassword = () => {
 
