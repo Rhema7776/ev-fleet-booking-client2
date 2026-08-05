@@ -11,7 +11,7 @@ import TermsText from "@/components/auth/TermsText";
 import AuthFooter from "@/components/auth/AuthFooter";
 import AuthProgressBar from "@/components/auth/AuthProgressBar";
 
-import Button from "@/components/ui/Button";
+import Button from "@/components/ui/button";
 
 import { registerUser } from "@/services/auth/authService";
 import { ROUTES } from "@/constants/routes";

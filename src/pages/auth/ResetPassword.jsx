@@ -8,7 +8,7 @@ import AuthBackButton from "@/components/auth/AuthBackButton";
 import AuthHeader from "@/components/auth/AuthHeader";
 
 import PasswordInput from "@/components/auth/PasswordInput";
-import Button from "@/components/ui/Button";
+import Button from "@/components/ui/button";
 
 const ResetPassword = () => {
 

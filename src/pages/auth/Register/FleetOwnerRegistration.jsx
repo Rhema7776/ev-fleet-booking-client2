@@ -6,7 +6,7 @@ import AuthBackButton from "@/components/auth/AuthBackButton";
 import AuthHeader from "@/components/auth/AuthHeader";
 import AuthProgressBar from "@/components/auth/AuthProgressBar";
 import AuthInput from "@/components/auth/AuthInput";
-import Button from "@/components/ui/Button";
+import Button from "@/components/ui/button";
 
 import { ROUTES } from "@/constants/routes";
 
