@@ -12,9 +12,11 @@ export const API = {
 
         FORGOT_PASSWORD: "/auth/forgot-password",
 
-        VERIFY_OTP: "/auth/verify-email",
+        VERIFY_OTP: "/auth/verify-otp",
 
         RESET_PASSWORD: "/auth/reset-password",
+
+        CREATE_PASSWORD: "/auth/create-password",
 
     },
 

@@ -5,6 +5,8 @@ export const ROUTES = {
 
     VERIFY_EMAIL: "/auth/verify-email",
 
+    VERIFY_OTP: "/auth/verify-otp",
+    
     RESET_PASSWORD: "/auth/reset-password",
 
     REGISTRATION_LOADING: "/auth/registration-loading",
@@ -27,7 +29,25 @@ export const ROUTES = {
 
     ENTERPRISE_SUCCESS: "/auth/register/enterprise/success",
 
-    FLEET_OWNER_REGISTER: "/auth/register/fleet-owner",
+    FLEET_TRANSITION: "/auth/register/fleet-transition",
+
+    FLEET_BUSINESS: "/auth/fleet/business",
+
+    FLEET_REGISTER: "/auth/fleet/register",
+
+    FLEET_PROFILE: "/auth/fleet/profile",
+
+    FLEET_SUCCESS: "/auth/fleet/success",
 
     DASHBOARD: "/dashboard",
+
+    FLEET_DASHBOARD: "/fleet",
+
+    FLEET_TRIPS: "/fleet/trips",
+
+    FLEET_VEHICLES: "/fleet/vehicles",
+
+    FLEET_EARNINGS: "/fleet/earnings",
+
+    FLEET_MORE: "/fleet/more",
 };

@@ -9,6 +9,7 @@ import AuthInput from "@/components/auth/AuthInput";
 import Button from "@/components/ui/Button";
 
 import { ROUTES } from "@/constants/routes";
+import { registerUser } from "@/services/auth/authService";
 
 const EnterprisePartnerRegistration = () => {
 
@@ -25,6 +26,68 @@ const EnterprisePartnerRegistration = () => {
     businessEmail,
     phoneNumber,
     ].every(value => value.trim());
+
+    const handleContinue = async () => {
+
+    try {
+
+        await registerUser({
+
+            fullName: contactPerson,
+
+            email: businessEmail,
+
+            phone: phoneNumber,
+
+            role: "ENTERPRISE_PARTNER",
+
+        });
+
+        navigate(
+            ROUTES.VERIFY_EMAIL,
+            {
+                state: {
+
+                    email: businessEmail,
+
+                    role: "ENTERPRISE_PARTNER",
+
+                    businessName,
+
+                    contactPerson,
+
+                    phoneNumber,
+
+                    darkText: "Verify",
+
+                    lightText: "your email",
+
+                    description: `Enter the code we sent to ${businessEmail}`,
+
+                    redirectTo: ROUTES.CREATE_PASSWORD,
+
+                    nextRoute: ROUTES.ENTERPRISE_PROFILE,
+
+                    currentStep: 2,
+
+                    totalSteps: 5,
+
+                },
+
+            }
+        );
+
+    }
+
+    catch (err) {
+
+        console.log(err);
+
+        console.log(err.response?.data);
+
+    }
+
+};
 
     return (
 
@@ -82,29 +145,7 @@ const EnterprisePartnerRegistration = () => {
                 <Button
                     variant="dark"
                     disabled={!isValid}
-                    onClick={() =>
-                        navigate("/auth/verify-email", {
-                            state: {
-                            role: "ENTERPRISE",
-
-                            email: businessEmail,
-
-                            businessName,
-                            contactPerson,
-                            phoneNumber,
-
-                            darkText: "Verify",
-                            lightText: "your enterprise email",
-
-                            description: `Enter the code we sent to ${businessEmail}`,
-
-                            redirectTo: ROUTES.CREATE_PASSWORD,
-
-                            currentStep: 2,
-                            totalSteps: 5,
-                        },
-                    })
-                }
+                    onClick={handleContinue}
                 >
                     Continue
                 </Button>

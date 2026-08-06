@@ -2,7 +2,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 import { ROUTES } from "@/constants/routes";
 import AuthContainer from "@/components/auth/AuthContainer";
-
 import leftArrow from "@/assets/images/Icon Button.svg";
 
 import individualImage from "@/assets/images/partnercardimg1.svg";
@@ -23,7 +22,7 @@ const PartnerTypeSelection = () => {
                     -my-8
                     px-6
                     py-8
-                    bg-brand-primary
+                    bg-brand-primary-pale
                     flex
                     flex-col
                 "
@@ -165,7 +164,7 @@ const PartnerTypeSelection = () => {
                                 w-12
                                 h-12
                                 rounded-full
-                                bg-brand-primary
+                                bg-brand-primary-pale
                                 flex
                                 items-center
                                 justify-center

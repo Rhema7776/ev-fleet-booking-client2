@@ -46,11 +46,11 @@ const IndividualPartnerRegistration = () => {
 
         }
 
-        setError("");
-
-        setLoading(true);
-
         try {
+
+            setLoading(true);
+
+            setError("");
 
             await registerUser({
 
@@ -58,19 +58,21 @@ const IndividualPartnerRegistration = () => {
 
                 email,
 
-                password: "Password123@",
-
                 phone: "",
 
-                role: "FLEET_OWNER",
+                role: "INDIVIDUAL_PARTNER",
 
             });
 
-            navigate("/auth/verify-email", {
+            navigate(ROUTES.VERIFY_EMAIL, {
 
                 state: {
 
                     email,
+
+                    role: "INDIVIDUAL_PARTNER",
+
+                    fullName,
 
                     darkText: "Verify",
 
@@ -79,6 +81,8 @@ const IndividualPartnerRegistration = () => {
                     description: `Enter the code we sent to ${email}`,
 
                     redirectTo: ROUTES.CREATE_PASSWORD,
+
+                    nextRoute: ROUTES.REGISTER_SUCCESS,
 
                     currentStep: 1,
 
@@ -154,18 +158,22 @@ const IndividualPartnerRegistration = () => {
             <AuthFooter
                 text="Already have an account?"
                 linkText="Log in"
-                to="/auth/login"
+                to={ROUTES.LOGIN}
             />
 
-            {error && (
+            {
 
-                <p className="mt-6 text-center text-sm text-red-500">
+                error && (
 
-                    {error}
+                    <p className="mt-6 text-center text-sm text-red-500">
 
-                </p>
+                        {error}
 
-            )}
+                    </p>
+
+                )
+
+            }
 
             <div className="mt-8">
 

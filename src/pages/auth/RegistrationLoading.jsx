@@ -10,7 +10,7 @@ export default function RegistrationLoading() {
     const location = useLocation();
 
     const nextRoute =
-    location.state?.next || "/auth/register";
+    location.state?.redirectTo ?? "/auth/register";
 
     const [frame, setFrame] = useState(1);
 
@@ -57,7 +57,7 @@ export default function RegistrationLoading() {
 
         };
 
-    }, [navigate]);
+    }, [navigate, nextRoute]);
 
     return (
 

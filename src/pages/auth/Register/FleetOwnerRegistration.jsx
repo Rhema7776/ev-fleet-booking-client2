@@ -1,63 +1,166 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
+
+import { registerUser } from "@/services/auth/authService";
+import { ROUTES } from "@/constants/routes";
 
 import AuthContainer from "@/components/auth/AuthContainer";
 import AuthBackButton from "@/components/auth/AuthBackButton";
 import AuthHeader from "@/components/auth/AuthHeader";
 import AuthProgressBar from "@/components/auth/AuthProgressBar";
 import AuthInput from "@/components/auth/AuthInput";
-import Button from "@/components/ui/Button";
 
-import { ROUTES } from "@/constants/routes";
+import PhoneInput from "@/components/auth/PhoneInput";
+
+import SocialLogin from "@/components/auth/SocialLogin";
+import TermsFooter from "@/components/auth/TermsFooter";
+
+import Button from "@/components/ui/Button";
 
 const FleetOwnerRegistration = () => {
 
     const navigate = useNavigate();
 
-    const [companyName, setCompanyName] = useState("");
-    const [contactPerson, setContactPerson] = useState("");
+    // Values coming from FleetBusinessDetails
+    const { state } = useLocation();
+
+    const companyName = state?.companyName || "";
+
+    const contactPerson = state?.contactPerson || "";
+    // Screen 2 fields
     const [email, setEmail] = useState("");
     const [phoneNumber, setPhoneNumber] = useState("");
 
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState("");
+
     const isValid = [
-        companyName,
-        contactPerson,
+
         email,
+
         phoneNumber,
-    ].every(value => value.trim());
 
-    const handleContinue = () => {
+    ].every((value) => value.trim());
 
-        navigate(
-            ROUTES.VERIFY_EMAIL,
-            {
-                state: {
+    const handleContinue = async () => {
 
-                    role: "FLEET_OWNER",
+        setError("");
 
-                    email,
+        if (!email.trim()) {
 
-                    companyName,
+            return setError("Business email is required.");
 
-                    contactPerson,
+        }
 
-                    phoneNumber,
+        if (!phoneNumber.trim()) {
 
-                    darkText: "Verify",
+            return setError("Phone number is required.");
 
-                    lightText: "your email",
+        }
 
-                    description: `Enter the verification code sent to ${email}`,
+        try {
 
-                    redirectTo: ROUTES.CREATE_PASSWORD,
+            setLoading(true);
+            console.log({
 
-                    currentStep: 2,
+                fullName: contactPerson,
 
-                    totalSteps: 5,
+                email,
 
-                },
-            }
-        );
+                phone: phoneNumber,
+
+                role: "FLEET_OWNER",
+
+            });
+
+            const response = await registerUser({
+                fullName: contactPerson,
+                email,
+                phone: phoneNumber,
+                role: "FLEET_OWNER",
+            });
+
+            console.log("REGISTER SUCCESS", response);
+
+            console.log("About to navigate...");
+
+            console.log("Navigating to:", ROUTES.VERIFY_EMAIL);
+
+            // navigate(ROUTES.VERIFY_EMAIL, {
+
+            //     state: {
+
+            //         role: "FLEET_OWNER",
+
+            //         companyName,
+
+            //         contactPerson,
+
+            //         fullName: contactPerson,
+
+            //         email,
+
+            //         phoneNumber,
+
+            //         darkText: "Verify",
+
+            //         lightText: "your email",
+
+            //         description: `Enter the verification code sent to ${email}`,
+
+            //         redirectTo: ROUTES.CREATE_PASSWORD,
+
+            //         nextRoute: ROUTES.FLEET_PROFILE,
+
+            //         currentStep: 3,
+
+            //         totalSteps: 5,
+
+            //     },
+
+            // });
+            const nextState = {
+            role: "FLEET_OWNER",
+            companyName,
+            contactPerson,
+            fullName: contactPerson,
+            email,
+            phoneNumber,
+            darkText: "Verify",
+            lightText: "your email",
+            description: `Enter the verification code sent to ${email}`,
+            redirectTo: ROUTES.CREATE_PASSWORD,
+            nextRoute: ROUTES.FLEET_PROFILE,
+            currentStep: 3,
+            totalSteps: 5,
+        };
+        console.log("Navigating with state:", nextState);
+
+        setTimeout(() => {
+            navigate(ROUTES.VERIFY_EMAIL, {
+                state: nextState,
+            });
+        }, 1000);
+
+        }
+
+        catch (err) {
+
+            console.log("FULL ERROR");
+            console.log(err);
+
+            console.log("MESSAGE:", err.message);
+
+            console.log("RESPONSE:", err.response);
+
+            console.log("DATA:", err.response?.data);
+
+        }
+        finally {
+
+            setLoading(false);
+
+        }
 
     };
 
@@ -68,61 +171,96 @@ const FleetOwnerRegistration = () => {
             <AuthBackButton />
 
             <AuthProgressBar
-                current={1}
+
+                current={2}
+
                 total={5}
+
             />
 
             <AuthHeader
-                stacked
-                darkText="Create your"
-                lightText="fleet account"
-                description="Let's get your fleet business onboard."
+                title={
+                    <>
+                        <span className="text-[#7B7F86]">
+                            Create your
+                        </span>{" "}
+
+                        <span className="text-[#071B14]">
+                            fleet
+                        </span>
+
+                        <br />
+
+                        <span className="text-[#071B14]">
+                            owner account!
+                        </span>
+                    </>
+                }
             />
 
             <div className="space-y-5 mt-8">
 
-                <AuthInput
-                    label="Fleet Company"
-                    placeholder="Enter company name"
-                    value={companyName}
-                    onChange={(e) => setCompanyName(e.target.value)}
-                />
 
                 <AuthInput
-                    label="Contact Person"
-                    placeholder="Enter full name"
-                    value={contactPerson}
-                    onChange={(e) => setContactPerson(e.target.value)}
-                />
 
-                <AuthInput
                     label="Business Email"
+
                     type="email"
+
                     placeholder="company@email.com"
+
                     value={email}
+
                     onChange={(e) => setEmail(e.target.value)}
-                />
 
-                <AuthInput
-                    label="Phone Number"
-                    placeholder="080..."
-                    value={phoneNumber}
-                    onChange={(e) => setPhoneNumber(e.target.value)}
                 />
-
+                
             </div>
+            <div>
+
+                <PhoneInput
+                    label="Phone Number"
+                    value={phoneNumber}
+                    onChange={setPhoneNumber}
+                />
+            </div>
+
+            {
+
+                error && (
+
+                    <p className="text-sm text-red-500 mt-5">
+
+                        {error}
+
+                    </p>
+
+                )
+
+            }
 
             <div className="mt-10">
 
                 <Button
+
                     variant="dark"
+
+                    loading={loading}
+
                     disabled={!isValid}
+
                     onClick={handleContinue}
+
                 >
+
                     Continue
+
                 </Button>
+                
 
             </div>
+            <SocialLogin />
+            <TermsFooter />
 
         </AuthContainer>
 

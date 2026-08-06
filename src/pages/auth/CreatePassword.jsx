@@ -6,7 +6,9 @@ import AuthBackButton from "@/components/auth/AuthBackButton";
 import AuthHeader from "@/components/auth/AuthHeader";
 import AuthProgressBar from "@/components/auth/AuthProgressBar";
 import PasswordInput from "@/components/auth/PasswordInput";
-
+import {
+    createPassword,
+} from "@/services/auth/authService";
 import Button from "@/components/ui/Button";
 
 const CreatePassword = () => {
@@ -24,7 +26,7 @@ const CreatePassword = () => {
 
     const {
         email,
-        role,
+        nextRoute,
         businessName,
         contactPerson,
         phoneNumber,
@@ -51,33 +53,37 @@ const CreatePassword = () => {
 
         setLoading(true);
 
-        if (role === "ENTERPRISE") {
+       try {
 
-            navigate(
-                ROUTES.ENTERPRISE_PROFILE,
-                {
-                    state: {
-                        email,
-                        businessName,
-                        contactPerson,
-                        phoneNumber,
-                    },
-                }
+            await createPassword({
+
+                email,
+
+                password,
+
+            });
+
+            navigate(nextRoute, {
+                state,
+            });
+
+        }
+
+        catch (err) {
+
+            setError(
+
+                err.response?.data?.message ||
+
+                "Unable to create password."
+
             );
 
         }
-        else if (role === "FLEET_OWNER") {
 
-            navigate(
-                ROUTES.DASHBOARD
-                // Temporary.
-                //  we'll navigate to Fleet Details later.
-            );
+        finally {
 
-        }
-        else {
-
-            navigate(ROUTES.REGISTER_SUCCESS);
+            setLoading(false);
 
         }
     }; 

@@ -70,25 +70,51 @@ const AuthContainer = ({
 
     return (
 
-        <div className=" min-h-screen flex items-center justify-center p-6">
+        <div
+            className="
+                min-h-screen
+                bg-white
+                px-6
+                py-8
+                flex
+                justify-center
+            "
+        >
 
             <div
-                className={""}
+                className="
+                    w-full
+                    max-w-[430px]
+                    flex
+                    flex-col
+                "
             >
 
-                {
-                    padded ? (
-
-                        <div className="px-6 py-8 h-full">
-                            {children}
-                        </div>
-
-                    ) : children
-                }
+                {children}
 
             </div>
 
         </div>
+
+        // <div className=" min-h-screen flex items-center justify-center p-6">
+
+        //     <div
+        //         className={""}
+        //     >
+
+        //         {
+        //             padded ? (
+
+        //                 <div className="px-6 py-8 h-full">
+        //                     {children}
+        //                 </div>
+
+        //             ) : children
+        //         }
+
+        //     </div>
+
+        // </div>
 
     );
 

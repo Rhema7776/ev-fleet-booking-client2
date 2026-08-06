@@ -1,0 +1,178 @@
+
+ .leasehub-phone{
+
+    display:flex;
+
+    align-items:center;
+
+    width:100%;
+
+    height:58px;
+
+    background:#F7F7F7;
+
+    border:1px solid #DDE1E5;
+
+    border-radius:999px;
+
+    transition:.2s;
+
+}
+
+.leasehub-phone:focus-within{
+
+    border-color:#0A8F5A;
+
+}
+
+.leasehub-phone .PhoneInputCountry{
+
+    margin:0;
+
+    padding:0 18px;
+
+    height:58px;
+
+    display:flex;
+
+    align-items:center;
+
+    border-right:1px solid #E8E8E8;
+
+}
+
+.leasehub-phone .PhoneInputCountryIcon{
+
+    width:24px;
+
+    height:24px;
+
+    border-radius:999px;
+
+    overflow:hidden;
+
+    box-shadow:none;
+
+    background:none;
+
+
+}
+
+.leasehub-phone .PhoneInputCountryIcon img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+/* 
+    border-radius:999px; */
+
+
+    border-radius:50%;
+
+}
+/* New */
+.PhoneInputCountryIcon--border{
+
+    background:none !important;
+
+    box-shadow:none !important;
+
+    border:none !important;
+
+}
+
+.PhoneInputCountrySelect{
+
+    cursor:pointer;
+
+}
+
+.PhoneInputCountrySelect:focus-visible{
+
+    outline:none;
+
+}
+
+/* .PhoneInputCountry:focus-within .PhoneInputCountryIcon{
+
+    outline:2px solid #2F80ED;
+
+    outline-offset:2px;
+
+} */
+ .PhoneInputCountry{
+
+    gap:10px;
+
+}
+
+.leasehub-phone:focus-within{
+
+    border-color:#0A8F5A;
+
+    box-shadow:0 0 0 4px rgba(10,143,90,.08);
+
+}
+/* End New */
+
+
+.leasehub-phone .PhoneInputCountrySelectArrow{
+    font-size: large;
+
+    opacity:.55;
+
+    margin-left:10px;
+
+}
+
+.leasehub-phone input{
+
+    flex:1;
+
+    border:none;
+
+    outline:none;
+
+    background:transparent;
+
+    font-size:15px;
+
+    padding:0 18px;
+
+    color:#202124;
+
+}
+
+.leasehub-phone input::placeholder{
+
+    color:#9CA3AF;
+
+}
+
+.PhoneInputCountrySelectDropdown{
+
+    border-radius:18px;
+
+    border:none;
+
+    box-shadow:0 14px 30px rgba(0,0,0,.12);
+
+    padding:8px;
+
+}
+
+.PhoneInputCountrySelectDropdown__option{
+
+    border-radius:10px;
+
+    padding:10px;
+
+}
+
+.PhoneInputCountrySelectDropdown__option:hover{
+
+    background:#F4F4F4;
+
+} 

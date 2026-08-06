@@ -32,37 +32,29 @@ const LoginPage = () => {
 
         e.preventDefault();
 
+        console.log("LOGIN BUTTON CLICKED");
+
         setError("");
 
         setLoading(true);
 
         try {
-
+            console.log("ABOUT TO CALL LOGIN SERVICE");
             await login({
-
                 email,
-
                 password,
-
             });
 
             navigate("/dashboard");
 
-        }
-
-        catch (err) {
+        } catch (err) {
 
             setError(
-
                 err.response?.data?.message ||
-
                 "Unable to login."
-
             );
 
-        }
-
-        finally {
+        } finally {
 
             setLoading(false);
 
@@ -121,19 +113,13 @@ const LoginPage = () => {
                     Forgot password?
                 </Link>
 
-                {
+                {error && (
 
-                    error && (
+                    <p className="mt-4 text-sm text-red-500">
+                        {error}
+                    </p>
 
-                        <p className="mt-4 text-sm text-red-500">
-
-                            {error}
-
-                        </p>
-
-                    )
-
-                }
+                )}
 
                 <div className="mt-8">
 
@@ -142,9 +128,7 @@ const LoginPage = () => {
                         variant="dark"
                         loading={loading}
                     >
-
                         Continue
-
                     </Button>
 
                 </div>
