@@ -11,7 +11,7 @@ import AuthFooter from "@/components/auth/AuthFooter";
 import SocialButtons from "@/components/auth/SocialButtons";
 import PasswordInput from "@/components/auth/PasswordInput";
 import TextInput from "@/components/ui/TextInput";
-import Button from "@/components/ui/Button";
+import Button from "@/components/ui/button";
 
 import { login } from "@/services/auth/authService";
 

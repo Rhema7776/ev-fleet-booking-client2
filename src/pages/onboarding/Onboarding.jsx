@@ -4,9 +4,9 @@ import { ROUTES } from "@/constants/routes";
 
 import ProgressBar from "@/components/onboarding/ProgressBar";
 import OnboardingSlide from "@/components/onboarding/OnboardingSlide";
-import onboardingData from "@/components/onboarding/onboardingData";
+import onboardingData from "@/components/onboarding/OnboardingData";
 import AuthFooter from "@/components/auth/AuthFooter";
-import Button from "@/components/ui/Button";
+import Button from "@/components/ui/button";
 import carImage from "@/assets/images/Group 1.png";
 
 

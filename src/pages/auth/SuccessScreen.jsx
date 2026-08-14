@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { ROUTES } from "@/constants/routes";
 
 import AuthContainer from "@/components/auth/AuthContainer";
-import Button from "@/components/ui/Button";
+import Button from "@/components/ui/button";
 
 import padlockIcon from "@/assets/images/padlock_Icon.svg";
 import individualSuccess from "@/assets/images/individual-success.svg";

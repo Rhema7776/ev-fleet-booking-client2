@@ -1,6 +1,11 @@
 export const API = {
 
-    BASE_URL: "http://localhost:3000/api/v1",
+    // Vite inlines this at build time, so it comes from --build-arg, not from
+    // the runtime environment. The fallback only serves `npm run dev`: the
+    // Docker build refuses to run without VITE_API_BASE_URL set.
+    BASE_URL:
+        import.meta.env.VITE_API_BASE_URL ||
+        "http://localhost:3000/api/v1",
 
     ENDPOINTS: {
 
