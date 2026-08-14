@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Check } from "lucide-react";
 
 import AuthSuccessLayout from "./AuthSuccessLayout";
+import verificationBadge from "@/assets/icons/verificationBadge.svg";
 
 const CompanySuccess = ({
     logo,
@@ -46,10 +47,9 @@ const CompanySuccess = ({
 
                 <div
                     className="
-                        w-44
-                        h-44
+                        w-38
+                        h-38
                         rounded-full
-                        bg-white/15
                         backdrop-blur-sm
                         flex
                         items-center
@@ -61,8 +61,8 @@ const CompanySuccess = ({
 
                     <div
                         className="
-                            w-36
-                            h-36
+                            w-30
+                            h-30
                             rounded-full
                             bg-black
                             overflow-hidden
@@ -115,10 +115,10 @@ const CompanySuccess = ({
                         absolute
                         top-4
                         right-2
-                        w-14
-                        h-14
+                        w-10
+                        h-10
                         rounded-full
-                        bg-[#D7FF45]
+                        bg-transparent
                         shadow-xl
                         flex
                         items-center
@@ -126,15 +126,19 @@ const CompanySuccess = ({
                     "
 
                 >
+                    {/* <Check
 
-                    <Check
-
-                        size={28}
+                        size={25}
 
                         strokeWidth={3}
 
                         className="text-[#06311E]"
 
+                    /> */}
+                    <img
+                        src={verificationBadge}
+                        alt="Verified"
+                        className="w-full h-full object-contain"
                     />
 
                 </motion.div>
@@ -161,13 +165,12 @@ const CompanySuccess = ({
 
                 className="
                     text-white
-                    text-[52px]
+                    text-[38px]
                     leading-[0.9]
-                    font-black
+                    header-font
                     whitespace-pre-line
                     max-w-md
                 "
-
             >
 
                 {companyName}
@@ -196,10 +199,10 @@ const CompanySuccess = ({
 
                 className="
                     text-white/85
-                    text-lg
+                    text-sm
                     mt-8
                     max-w-sm
-                    leading-7
+                    leading-none
                 "
 
             >

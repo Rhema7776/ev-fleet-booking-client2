@@ -10,24 +10,17 @@ import SocialButtons from "@/components/auth/SocialButtons";
 import TermsText from "@/components/auth/TermsText";
 import AuthFooter from "@/components/auth/AuthFooter";
 import AuthProgressBar from "@/components/auth/AuthProgressBar";
-
-import Button from "@/components/ui/button";
+import Button from "@/components/ui/Button";
 
 import { registerUser } from "@/services/auth/authService";
 import { ROUTES } from "@/constants/routes";
 
 const IndividualPartnerRegistration = () => {
-
     const navigate = useNavigate();
-
     const [fullName, setFullName] = useState("");
-
     const [email, setEmail] = useState("");
-
     const [loading, setLoading] = useState(false);
-
     const [error, setError] = useState("");
-
     const handleRegister = async () => {
 
         if (!fullName.trim()) {
@@ -46,11 +39,11 @@ const IndividualPartnerRegistration = () => {
 
         }
 
-        setError("");
-
-        setLoading(true);
-
         try {
+
+            setLoading(true);
+
+            setError("");
 
             await registerUser({
 
@@ -58,19 +51,21 @@ const IndividualPartnerRegistration = () => {
 
                 email,
 
-                password: "Password123@",
-
                 phone: "",
 
-                role: "FLEET_OWNER",
+                role: "INDIVIDUAL_PARTNER",
 
             });
 
-            navigate("/auth/verify-email", {
+            navigate(ROUTES.VERIFY_EMAIL, {
 
                 state: {
 
                     email,
+
+                    role: "INDIVIDUAL_PARTNER",
+
+                    fullName,
 
                     darkText: "Verify",
 
@@ -80,6 +75,8 @@ const IndividualPartnerRegistration = () => {
 
                     redirectTo: ROUTES.CREATE_PASSWORD,
 
+                    nextRoute: ROUTES.REGISTER_SUCCESS,
+
                     currentStep: 1,
 
                     totalSteps: 4,
@@ -87,21 +84,13 @@ const IndividualPartnerRegistration = () => {
                 },
 
             });
-
         }
-
         catch (err) {
-
             setError(
-
                 err.response?.data?.message ||
-
                 "Registration failed."
-
             );
-
         }
-
         finally {
 
             setLoading(false);
@@ -113,13 +102,15 @@ const IndividualPartnerRegistration = () => {
     return (
 
         <AuthContainer>
+            <data className="flex items-center gap-3">
+                <AuthBackButton />
 
-            <AuthBackButton />
+                <AuthProgressBar
+                    current={1}
+                    total={4}
+                />
 
-            <AuthProgressBar
-                current={1}
-                total={4}
-            />
+            </data>
 
             <AuthHeader
                 stacked
@@ -128,7 +119,7 @@ const IndividualPartnerRegistration = () => {
                 description="Enter your details to continue."
             />
 
-            <div className="space-y-5 mt-8">
+            <div className="space-y-5 mt-6">
 
                 <AuthInput
                     label="Full Name"
@@ -147,25 +138,27 @@ const IndividualPartnerRegistration = () => {
 
             </div>
 
-            <AuthDivider />
-
-            <SocialButtons />
+            <SocialButtons role="INDIVIDUAL_PARTNER" redirectTo={ROUTES.DASHBOARD} navigate={navigate} />
 
             <AuthFooter
                 text="Already have an account?"
                 linkText="Log in"
-                to="/auth/login"
+                to={ROUTES.LOGIN}
             />
 
-            {error && (
+            {
 
-                <p className="mt-6 text-center text-sm text-red-500">
+                error && (
 
-                    {error}
+                    <p className="mt-6 text-center text-sm text-red-500">
 
-                </p>
+                        {error}
 
-            )}
+                    </p>
+
+                )
+
+            }
 
             <div className="mt-8">
 

@@ -9,40 +9,81 @@ import emptyBookingCardsImg from "@/assets/images/emptybooking-cards.svg";
 
 export default function Dashboard() {
 
-  const user = JSON.parse(
+const user = JSON.parse(
     localStorage.getItem("user") || "{}"
-  );
+);
 
-  const name =
-    user.companyName||
-    user.fullName ||
-      "Partner";
+const fullName = user.fullName || "Partner";
+
+const initials = fullName
+    .split(" ")
+    .map((part) => part[0])
+    .join("")
+    .slice(0, 2)
+    .toUpperCase();
+
   return (
     <div className="min-h-screen bg-gray-100 max-w-md mx-auto px-5 pb-28 overflow-x-hidden">
       {/* Header */}
-      <div className="flex items-center justify-between px-6 pt-6 mb-6">
+      <div className="flex items-center justify-between px-1 pt-2 mb-6">
         <div className="flex items-center gap-3">
-          {/* Swap this for the real agent/company avatar image when you have it */}
-          <div className="w-10 h-10 rounded-full bg-gray-900 flex items-center justify-center text-white text-sm font-bold">
-           {name}
-            BW
-          </div>
-          <div>
-            <p className="text-xs text-gray-500 leading-tight">Good morning,</p>
-            <p className="text-sm font-bold text-gray-900 leading-tight">
-              {name}
-            </p>
-          </div>
-        </div>
-        <button
-          type="button"
-          aria-label="Notifications"
-          className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center"
-        >
-          <Bell className="w-5 h-5 text-gray-900" />
-        </button>
-      </div>
 
+              {/* Profile Avatar */}
+              <div
+                  className="
+                      w-10
+                      h-10
+                      rounded-full
+                      overflow-hidden
+                      bg-gray-200
+                      flex
+                      items-center
+                      justify-center
+                      shrink-0
+                  "
+              >
+                  {user.profileImage ? (
+                      <img
+                          src={user.profileImage}
+                          alt={fullName}
+                          className="w-full h-full object-cover"
+                      />
+                  ) : (
+                      <span className="text-xs font-bold text-gray-700">
+                          {initials}
+                      </span>
+                  )}
+              </div>
+
+              {/* Greeting */}
+              <div>
+                  <p className="text-xs text-gray-500 leading-tight">
+                      Good morning,
+                  </p>
+
+                  <p className="text-sm font-bold text-gray-900 leading-tight">
+                      {fullName}
+                  </p>
+              </div>
+          </div>
+
+          {/* Notification */}
+          <button
+              type="button"
+              aria-label="Notifications"
+              className="
+                  w-10
+                  h-10
+                  rounded-full
+                  bg-gray-100
+                  flex
+                  items-center
+                  justify-center
+              "
+          >
+              <Bell className="w-5 h-5 text-gray-900" />
+          </button>
+      </div>
       {/* Lease balance card */}
       <div className="flex items-stretch gap-2 mb-4 overflow-hidden">
         <div className="relative flex-1 overflow-hidden rounded-3xl bg-[#0B2B21] px-5 pt-5 pb-4 min-w-0">

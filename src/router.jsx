@@ -20,14 +20,24 @@ import IndividualPartnerRegistration from "./pages/auth/Register/IndividualPartn
 import EnterprisePartnerRegistration from "./pages/auth/Register/EnterprisePartnerRegistration";
 import EnterpriseAddress from "./pages/auth/Register/EnterpriseAddress";
 import CompleteEnterpriseProfile from "./pages/auth/Register/CompleteEnterpriseProfile";
-
 import CreatePassword from "./pages/auth/CreatePassword";
 import RegistrationType from "./pages/auth/Register/RegistrationType.jsx"
+
+//Authentication_Fleet Transition
+import FleetBusinessDetails from "./pages/auth/Fleet/FleetBusinessDetails";
+import FleetOwnerRegistration from "./pages/auth/Register/FleetOwnerRegistration";
+import FleetProfile from "./pages/auth/Fleet/FleetProfile";
+import FleetSuccess from "./pages/auth/Fleet/FleetSuccess";
+import FleetTransition from "./pages/auth/Fleet/FleetTransition";
+import Trips from "./pages/fleet/Trips";
+import Fleet from "./pages/fleet/Fleet";
+import Earnings from "./pages/fleet/Earnings";
+import More from "./pages/fleet/More";
+import FleetDashboard from "./pages/fleet/Dashboard";
 //Success
 import IndividualRegistrationSuccess from "./pages/auth/Register/IndividualRegistrationSuccess";
 import EnterpriseRegistrationSuccess from "./pages/auth/Register/EnterpriseRegistrationSuccess";
 import SuccessScreen from "./pages/auth/SuccessScreen";
-import FleetOwnerRegistration from "./pages/auth/Register/FleetOwnerRegistration";
 // Dashboard
 import Dashboard from "./pages/dashboard/Dashboard";
 import FleetOwners from "./pages/dashboard/FleetOwners";
@@ -36,8 +46,10 @@ import Bookings from "./pages/dashboard/Bookings";
 import Agents from "./pages/dashboard/Agents";
 import Settings from "./pages/dashboard/Settings";
 
+
 // Shared
 import NotFound from "./pages/NotFound";
+import FleetLayout from "./layouts/FleetLayout";
 
 const router = createBrowserRouter([
 
@@ -85,6 +97,24 @@ const router = createBrowserRouter([
             path: "registration-loading",
             element: <RegistrationLoading />,
         },
+       
+        {
+            path: "register/fleet-transition",
+            element: <FleetTransition />,
+        },
+        {
+            path: "fleet/business",
+            element: <FleetBusinessDetails />,
+        },
+
+        {
+            path: "fleet/profile",
+            element: <FleetProfile />,
+        },
+        {
+            path: "fleet/success",
+            element: <FleetSuccess />,
+        },
         {
             path: "register",
             element: <RegistrationType />,
@@ -103,7 +133,7 @@ const router = createBrowserRouter([
             element: <EnterprisePartnerRegistration />,
         },
         {
-            path: "register/fleet-owner",
+            path: "fleet/register",
             element: <FleetOwnerRegistration />,
         },
         {
@@ -130,7 +160,41 @@ const router = createBrowserRouter([
 
     ],
     },
-    
+    {
+    path: "/fleet",
+
+    element: <FleetLayout />,
+
+    children: [
+
+        {
+            index: true,
+            element: <FleetDashboard />,
+        },
+
+        {
+            path: "trips",
+            element: <Trips />,
+        },
+
+        {
+            path: "vehicles",
+            element: <Fleet />,
+        },
+
+        {
+            path: "earnings",
+            element: <Earnings />,
+        },
+
+        {
+            path: "more",
+            element: <More />,
+        },
+
+    ],
+
+},
     {
     path: "/dashboard",
     element: <AppLayout />,

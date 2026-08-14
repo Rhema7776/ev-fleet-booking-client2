@@ -1,23 +1,37 @@
 import { useRef } from "react";
 
-const OTPInput = ({ value, onChange }) => {
+const OTPInput = ({
+    value,
+    onChange,
+    disabled = false,
+}) => {
+
     const inputRefs = useRef([]);
 
     const handleChange = (index, e) => {
-        const digit = e.target.value.replace(/\D/g, "");
+
+        if (disabled) return;
+
+        const digit = e.target.value
+            .replace(/\D/g, "")
+            .slice(-1);
 
         const newValue = [...value];
 
-        newValue[index] = digit.slice(-1);
+        newValue[index] = digit;
 
         onChange(newValue);
 
         if (digit && index < 5) {
             inputRefs.current[index + 1]?.focus();
         }
+
     };
 
     const handleKeyDown = (index, e) => {
+
+        if (disabled) return;
+
         if (
             e.key === "Backspace" &&
             !value[index] &&
@@ -25,9 +39,13 @@ const OTPInput = ({ value, onChange }) => {
         ) {
             inputRefs.current[index - 1]?.focus();
         }
+
     };
 
     const handlePaste = (e) => {
+
+        if (disabled) return;
+
         e.preventDefault();
 
         const pasted = e.clipboardData
@@ -48,14 +66,18 @@ const OTPInput = ({ value, onChange }) => {
         inputRefs.current[
             Math.min(pasted.length - 1, 5)
         ]?.focus();
+
     };
 
     return (
+
         <div
-            className="flex justify-between gap-3"
+            className="flex justify-between gap-3 "
             onPaste={handlePaste}
         >
+
             {value.map((digit, index) => (
+
                 <input
                     key={index}
                     ref={(el) => (inputRefs.current[index] = el)}
@@ -63,6 +85,7 @@ const OTPInput = ({ value, onChange }) => {
                     inputMode="numeric"
                     maxLength={1}
                     value={digit}
+                    disabled={disabled}
                     onChange={(e) =>
                         handleChange(index, e)
                     }
@@ -70,8 +93,10 @@ const OTPInput = ({ value, onChange }) => {
                         handleKeyDown(index, e)
                     }
                     className={`
-                        w-12
-                        h-12
+                        flex-1
+                        min-w-0
+                        max-w-10
+                        aspect-square
                         rounded-full
                         text-center
                         text-lg
@@ -87,11 +112,21 @@ const OTPInput = ({ value, onChange }) => {
                         }
 
                         focus:border-brand-primary
+
+                        ${
+                            disabled
+                                ? "opacity-60 cursor-not-allowed"
+                                : ""
+                        }
                     `}
                 />
+
             ))}
+
         </div>
+
     );
+
 };
 
 export default OTPInput;

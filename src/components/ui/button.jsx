@@ -10,7 +10,7 @@ const Button = ({
     const variants = {
 
         primary: `
-            bg-brand-primary
+            bg-primary
             text-brand-dark
             hover:opacity-90
         `,
@@ -40,8 +40,8 @@ const Button = ({
                 shadow-lg
                 hover:shadow-xl
                 w-full
-                h-14
-                rounded-2xl
+                h-[52px]
+                rounded-full
                 font-semibold
                 transition-all
                 duration-300

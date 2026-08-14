@@ -3,6 +3,7 @@ import IllustrationSuccess from "../Success/IllustrationSuccess";
 import { ROUTES } from "@/constants/routes";
 
 import successIllustration from "@/assets/images/individual-success.svg";
+import leasehours from "@/assets/images/leasehours.svg";
 
 const IndividualRegistrationSuccess = () => {
 
@@ -11,6 +12,7 @@ const IndividualRegistrationSuccess = () => {
         <IllustrationSuccess
 
             image={successIllustration}
+            image2={leasehours}
 
             title={"You're in.\nWelcome to\nLeaseHub."}
 

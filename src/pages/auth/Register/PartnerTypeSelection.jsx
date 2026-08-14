@@ -1,12 +1,14 @@
 import { Link, useNavigate } from "react-router-dom";
-import { ArrowUpRight } from "lucide-react";
-import { ROUTES } from "@/constants/routes";
+
 import AuthContainer from "@/components/auth/AuthContainer";
+import SelectionCard from "@/components/cards/SelectionCard";
 
 import leftArrow from "@/assets/images/Icon Button.svg";
+import partnerImage from "@/assets/images/partnercardimg1.svg";
+import fleetImage from "@/assets/images/partnercardimg2.svg";
+import partnerCar from "@/assets/images/partnercar.svg";
 
-import individualImage from "@/assets/images/partnercardimg1.svg";
-import enterpriseImage from "@/assets/images/partnercardimg2.svg";
+import { ROUTES } from "@/constants/routes";
 
 const PartnerTypeSelection = () => {
 
@@ -14,286 +16,158 @@ const PartnerTypeSelection = () => {
 
     return (
 
-        <AuthContainer>
+        <AuthContainer padded={false}>
 
             <div
                 className="
+                    relative
                     min-h-screen
+                    overflow-hidden
                     -mx-6
                     -my-8
                     px-6
                     py-8
-                    bg-brand-primary
                     flex
                     flex-col
+                    bg-[#2DB654]
                 "
             >
+                {/* Decorative Car */}
+                <img
+                    src={partnerCar}
+                    alt=""
+                    className="
+                        absolute
+                        top-0
+                        right-0
+                        w-36
+                        md:w-44
+                        pointer-events-none
+                        select-none
+                    "
+                />
 
-                {/* Back */}
-
+                {/* Back Button */}
                 <button
                     onClick={() => navigate(-1)}
                     className="
-                        w-12
-                        h-12
+                        relative
+                        z-10
+                        w-10
+                        h-10
                         rounded-full
-                        bg-white
+                        bg-white/20
                         flex
                         items-center
                         justify-center
                     "
                 >
-
                     <img
                         src={leftArrow}
                         alt="Back"
                     />
-
                 </button>
 
-
-                {/* Heading */}
-
-                <div className="mt-12">
-
+                {/* Header */}
+                <div
+                    className="
+                        relative
+                        z-10
+                        mt-8
+                    "
+                >
                     <h1
                         className="
+                            header-font
                             text-white
-                            text-[42px]
-                            leading-[1]
                             font-black
+                            leading-none
+                            max-w-[440px]
                         "
+                        style={{
+                            fontSize: "clamp(40px,7vw,56px)"
+                        }}
                     >
-
-                        How would
+                        Partner
                         <br />
-
-                        you like to
-                        <br />
-
-                        partner
-                        <br />
-
                         with us?
-
                     </h1>
 
                     <p
                         className="
-                            text-white/90
-                            mt-5
-                            text-base
+                            mt-4
+                            text-white
+                            text-sm
+                            opacity-90
                         "
                     >
-
                         Choose a partner type.
-
                     </p>
 
                 </div>
 
-
                 {/* Cards */}
-
-                <div className="mt-12 space-y-5">
-
-                    {/* Individual */}
-                    
-                    <button
-
-                        onClick={() =>
-                            navigate(ROUTES.REGISTRATION_LOADING, {
-                                state: {
-                                    next: ROUTES.INDIVIDUAL_REGISTER,
-                                },
-                            })
-                        }
-
-                        className="
-                            w-full
-                            bg-white
-                            rounded-[30px]
-                            p-5
-                            flex
-                            items-center
-                            justify-between
-                            transition-all
-                            duration-300
-                            hover:scale-[1.02]
-                        "
-
-                    >
-
-                        <div className="flex items-center gap-4">
-
-                            <img
-
-                                src={individualImage}
-
-                                alt="Individual"
-
-                                className="
-                                    w-20
-                                    h-20
-                                "
-
-                            />
-
-                            <div className="text-left">
-
-                                <h2
-                                    className="
-                                        font-bold
-                                        text-lg
-                                    "
-                                >
-
-                                    Individual
-                                    <br />
-
-                                    partner
-
-                                </h2>
-
-                            </div>
-
-                        </div>
-
-
-                        <div
-                            className="
-                                w-12
-                                h-12
-                                rounded-full
-                                bg-brand-primary
-                                flex
-                                items-center
-                                justify-center
-                            "
-                        >
-
-                            <ArrowUpRight
-                                className="text-white"
-                                size={22}
-                            />
-
-                        </div>
-
-                    </button>
-
-
-                    {/* Enterprise */}
-
-                    <button
-
-                        onClick={() =>
-                            navigate(ROUTES.REGISTRATION_LOADING, {
-                                state: {
-                                    next: ROUTES.ENTERPRISE_REGISTER,
-                                },
-                            })
-                        }
-                            className="
-                            w-full
-                            bg-[#06251B]
-                            rounded-[30px]
-                            p-5
-                            flex
-                            items-center
-                            justify-between
-                            transition-all
-                            duration-300
-                            hover:scale-[1.02]
-                        "
-
-                    >
-
-                        <div className="flex items-center gap-4">
-
-                            <img
-
-                                src={enterpriseImage}
-
-                                alt="Enterprise"
-
-                                className="
-                                    w-20
-                                    h-20
-                                "
-
-                            />
-
-                            <div className="text-left">
-
-                                <h2
-                                    className="
-                                        font-bold
-                                        text-lg
-                                        text-white
-                                    "
-                                >
-
-                                    Enterprise
-                                    <br />
-
-                                    partner
-
-                                </h2>
-
-                            </div>
-
-                        </div>
-
-
-                        <div
-                            className="
-                                w-12
-                                h-12
-                                rounded-full
-                                bg-white
-                                flex
-                                items-center
-                                justify-center
-                            "
-                        >
-
-                            <ArrowUpRight
-                                size={22}
-                            />
-
-                        </div>
-
-                    </button>
-
-                </div>
-
-
-                {/* Footer */}
-
                 <div
                     className="
-                        mt-auto
-                        text-center
-                        text-white
+                        relative
+                        z-10
+                        flex-1
+                        flex
+                        flex-col
+                        justify-center
+                        gap-4
+                        mt-20
                     "
                 >
+                    <SelectionCard
+                        image={partnerImage}
+                        title="Individual partner"
+                        description="Create bookings, manage clients and earn."
+                        background="#F5F5F5"
+                        textColor="#081E19"
+                        arrowBackground="#FFFFFF"
+                        arrowColor="#081E19"
+                        onClick={() =>
+                            navigate(ROUTES.INDIVIDUAL_REGISTER)
+                        }
+                    />
 
+                    <SelectionCard
+                        image={fleetImage}
+                        title="Enterprise partner"
+                        description="Manage bookings for your organization with ease."
+                        background="#081E19"
+                        textColor="#FFFFFF"
+                        arrowBackground="#FFFFFF"
+                        arrowColor="#081E19"
+                        onClick={() =>
+                            navigate(ROUTES.ENTERPRISE_REGISTER)
+                        }
+                    />
+                </div>
+
+                {/* Footer */}
+                <div
+                    className="
+                        relative
+                        z-10
+                        text-center
+                        text-white
+                        text-sm
+                        pb-2
+                    "
+                >
                     Already registered?
 
                     <Link
-
-                        to="/auth/login"
-
+                        to={ROUTES.LOGIN}
                         className="
                             ml-2
-                            font-bold
+                            font-semibold
                             underline
                         "
-
                     >
-
-                        Log in
-
+                        Log In
                     </Link>
 
                 </div>

@@ -6,8 +6,10 @@ import AuthBackButton from "@/components/auth/AuthBackButton";
 import AuthHeader from "@/components/auth/AuthHeader";
 import AuthProgressBar from "@/components/auth/AuthProgressBar";
 import PasswordInput from "@/components/auth/PasswordInput";
-
-import Button from "@/components/ui/button";
+import {
+    createPassword,
+} from "@/services/auth/authService";
+import Button from "@/components/ui/Button";
 
 const CreatePassword = () => {
 
@@ -24,7 +26,7 @@ const CreatePassword = () => {
 
     const {
         email,
-        role,
+        nextRoute,
         businessName,
         contactPerson,
         phoneNumber,
@@ -51,46 +53,52 @@ const CreatePassword = () => {
 
         setLoading(true);
 
-        if (role === "ENTERPRISE") {
+       try {
 
-            navigate(
-                ROUTES.ENTERPRISE_PROFILE,
-                {
-                    state: {
-                        email,
-                        businessName,
-                        contactPerson,
-                        phoneNumber,
-                    },
-                }
+            await createPassword({
+
+                email,
+
+                password,
+
+            });
+
+            navigate(nextRoute, {
+                state,
+            });
+
+        }
+
+        catch (err) {
+
+            setError(
+
+                err.response?.data?.message ||
+
+                "Unable to create password."
+
             );
 
         }
-        else if (role === "FLEET_OWNER") {
 
-            navigate(
-                ROUTES.DASHBOARD
-                // Temporary.
-                //  we'll navigate to Fleet Details later.
-            );
+        finally {
 
-        }
-        else {
-
-            navigate(ROUTES.REGISTER_SUCCESS);
+            setLoading(false);
 
         }
     }; 
     return (
 
         <AuthContainer>
+            <div className="flex items-center gap-3">
+                <AuthBackButton />
+                
+                <AuthProgressBar
+                    current={state?.currentStep ?? 2}
+                    total={state?.totalSteps ?? 4}
+                />
+            </div>
 
-            <AuthBackButton />
-
-            <AuthProgressBar
-                current={state?.currentStep ?? 2}
-                total={state?.totalSteps ?? 4}
-            />
 
             <AuthHeader
                 darkText="Create"

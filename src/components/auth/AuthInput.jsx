@@ -18,7 +18,7 @@ const AuthInput = ({
                 placeholder={placeholder}
                 className="
                     w-full
-                    h-13
+                    h-15
                     rounded-full
                     bg-gray-100
                     border

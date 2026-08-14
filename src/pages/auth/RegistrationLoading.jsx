@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
-import loadingCar1 from "@/assets/images/loading-car1.svg";
-import loadingCar2 from "@/assets/images/loading-car2.svg";
+import loadingCar1 from "@/assets/images/loadingCar1.svg";
+import loadingCar2 from "@/assets/images/loadingCar2.svg";
 
 export default function RegistrationLoading() {
 
@@ -10,7 +10,7 @@ export default function RegistrationLoading() {
     const location = useLocation();
 
     const nextRoute =
-    location.state?.next || "/auth/register";
+    location.state?.redirectTo ?? "/auth/register";
 
     const [frame, setFrame] = useState(1);
 
@@ -57,17 +57,18 @@ export default function RegistrationLoading() {
 
         };
 
-    }, [navigate]);
+    }, [navigate, nextRoute]);
 
     return (
 
-        <div className="min-h-screen bg-white flex items-center justify-center">
+        <div className=" min-h-screen bg-white flex items-center justify-center">
 
             <img
                 src={frame === 1 ? loadingCar1 : loadingCar2}
                 alt="Loading"
                 className={`
-                    w-[340px]
+                    w-full
+                   
                     transition-all
                     duration-300
                     ease-in-out

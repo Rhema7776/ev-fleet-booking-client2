@@ -54,19 +54,12 @@ const CompleteEnterpriseProfile = () => {
     const enterpriseData = {
 
         email,
-
         businessName,
-
         contactPerson,
-
         phoneNumber,
-
         businessDescription,
-
         operatingCities,
-
         logo: logoFile,
-
         logoPreview,
 
     };
@@ -105,12 +98,16 @@ const CompleteEnterpriseProfile = () => {
     return (
 
         <AuthContainer>
+            <div className="flex items-center gap-3">
+                <AuthBackButton />
 
-            <AuthBackButton />
-            <AuthProgressBar
-                current={4}
-                total={5}
-            />
+                <AuthProgressBar
+                    current={4}
+                    total={5}
+                />
+
+            </div>
+
 
             <AuthHeader
                 stacked

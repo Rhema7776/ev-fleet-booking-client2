@@ -6,10 +6,10 @@ const AuthBackButton = () => {
 
     return (
         <button
-            type="button"
+            type="button" 
             onClick={() => navigate(-1)}
             aria-label="Go back"
-            className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center mb-8"
+            className=" rounded-full  flex items-center justify-center  w-14 h-14 "
         >
             <img src={leftarrow} alt="Back" />
         </button>

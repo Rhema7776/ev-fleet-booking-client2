@@ -10,7 +10,6 @@ import AuthDivider from "@/components/auth/AuthDivider";
 import AuthFooter from "@/components/auth/AuthFooter";
 import SocialButtons from "@/components/auth/SocialButtons";
 import PasswordInput from "@/components/auth/PasswordInput";
-
 import TextInput from "@/components/ui/TextInput";
 import Button from "@/components/ui/button";
 
@@ -19,50 +18,37 @@ import { login } from "@/services/auth/authService";
 const LoginPage = () => {
 
     const navigate = useNavigate();
-
     const [email, setEmail] = useState("");
-
     const [password, setPassword] = useState("");
-
     const [loading, setLoading] = useState(false);
-
     const [error, setError] = useState("");
 
     const handleSubmit = async (e) => {
 
         e.preventDefault();
 
-        setError("");
+        console.log("LOGIN BUTTON CLICKED");
 
+        setError("");
         setLoading(true);
 
         try {
-
+            console.log("ABOUT TO CALL LOGIN SERVICE");
             await login({
-
                 email,
-
                 password,
-
             });
 
             navigate("/dashboard");
 
-        }
-
-        catch (err) {
+        } catch (err) {
 
             setError(
-
                 err.response?.data?.message ||
-
                 "Unable to login."
-
             );
 
-        }
-
-        finally {
+        } finally {
 
             setLoading(false);
 
@@ -73,7 +59,7 @@ const LoginPage = () => {
     return (
 
         <AuthContainer>
-
+            
             <AuthBackButton />
 
             <AuthHeader
@@ -121,37 +107,27 @@ const LoginPage = () => {
                     Forgot password?
                 </Link>
 
-                {
+                {error && (
 
-                    error && (
+                    <p className="mt-4 text-sm text-red-500">
+                        {error}
+                    </p>
 
-                        <p className="mt-4 text-sm text-red-500">
+                )}
 
-                            {error}
-
-                        </p>
-
-                    )
-
-                }
-
-                <div className="mt-8">
+                <div className="mt-5">
 
                     <Button
                         type="submit"
                         variant="dark"
                         loading={loading}
                     >
-
                         Continue
-
                     </Button>
 
                 </div>
 
             </form>
-
-            <AuthDivider />
 
             <SocialButtons />
 

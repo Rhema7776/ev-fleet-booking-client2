@@ -13,11 +13,18 @@ const EnterpriseSuccess = () => {
 
     return (
 
-        <AuthContainer>
+        <main
+             style={{
+                        background:
+                            "linear-gradient(180deg, rgba(8,30,25,0.3) 0%, #23846E 100%)",
+                    }}
+        
+        >
 
             <main
                 className="
                     min-h-screen
+                    w-full
                     flex
                     flex-col
                     justify-between
@@ -26,7 +33,6 @@ const EnterpriseSuccess = () => {
                     px-6
                     py-16
                     rounded-[32px]
-                    bg-gradient-to-b
                     from-green-500
                     via-green-900
                     to-[#001f18]
@@ -47,6 +53,7 @@ const EnterpriseSuccess = () => {
 
                     <h1
                         className="
+                            font-gasoek
                             text-white
                             text-4xl
                             font-extrabold
@@ -92,7 +99,7 @@ const EnterpriseSuccess = () => {
 
             </main>
 
-        </AuthContainer>
+        </main>
 
     );
 
