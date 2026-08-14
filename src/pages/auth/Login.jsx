@@ -10,7 +10,6 @@ import AuthDivider from "@/components/auth/AuthDivider";
 import AuthFooter from "@/components/auth/AuthFooter";
 import SocialButtons from "@/components/auth/SocialButtons";
 import PasswordInput from "@/components/auth/PasswordInput";
-
 import TextInput from "@/components/ui/TextInput";
 import Button from "@/components/ui/Button";
 
@@ -19,13 +18,9 @@ import { login } from "@/services/auth/authService";
 const LoginPage = () => {
 
     const navigate = useNavigate();
-
     const [email, setEmail] = useState("");
-
     const [password, setPassword] = useState("");
-
     const [loading, setLoading] = useState(false);
-
     const [error, setError] = useState("");
 
     const handleSubmit = async (e) => {
@@ -35,7 +30,6 @@ const LoginPage = () => {
         console.log("LOGIN BUTTON CLICKED");
 
         setError("");
-
         setLoading(true);
 
         try {
@@ -65,7 +59,7 @@ const LoginPage = () => {
     return (
 
         <AuthContainer>
-
+            
             <AuthBackButton />
 
             <AuthHeader
@@ -121,7 +115,7 @@ const LoginPage = () => {
 
                 )}
 
-                <div className="mt-8">
+                <div className="mt-5">
 
                     <Button
                         type="submit"
@@ -134,8 +128,6 @@ const LoginPage = () => {
                 </div>
 
             </form>
-
-            <AuthDivider />
 
             <SocialButtons />
 

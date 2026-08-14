@@ -72,7 +72,7 @@ const OTPInput = ({
     return (
 
         <div
-            className="flex justify-between gap-3"
+            className="flex justify-between gap-3 "
             onPaste={handlePaste}
         >
 
@@ -93,8 +93,10 @@ const OTPInput = ({
                         handleKeyDown(index, e)
                     }
                     className={`
-                        w-12
-                        h-12
+                        flex-1
+                        min-w-0
+                        max-w-10
+                        aspect-square
                         rounded-full
                         text-center
                         text-lg

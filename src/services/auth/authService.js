@@ -62,15 +62,7 @@ console.log("Register request received:", data.email);
 
 };
 
-// export const verifyOTP = async (data) => {
-//     const response = await api.post(
-//         API.ENDPOINTS.VERIFY_OTP,
-//         data
-//     );
 
-//     return response.data;
-// };
-// Temporary Replacement 
 
 export const verifyOTP = async (data) => {
     console.log("AUTH SERVICE START");
@@ -147,3 +139,55 @@ export const resetPassword = async (data) => {
     return response.data;
 
 };
+
+export const socialLogin = async (data) => {
+
+    const response = await api.post(
+        API.ENDPOINTS.SOCIAL_LOGIN,
+        data
+    );
+
+    const {
+        accessToken,
+        refreshToken,
+        user,
+        isNewUser, // ← NEW
+    } = response.data;
+
+    saveTokens({
+        accessToken,
+        refreshToken,
+    });
+
+    localStorage.setItem(
+        STORAGE_KEYS.USER,
+        JSON.stringify(user)
+    );
+
+    return { user, isNewUser }; 
+};
+// export const socialLogin = async (data) => {
+
+//     const response = await api.post(
+//         API.ENDPOINTS.SOCIAL_LOGIN,
+//         data
+//     );
+
+//     const {
+//         accessToken,
+//         refreshToken,
+//         user,
+//     } = response.data;
+
+//     saveTokens({
+//         accessToken,
+//         refreshToken,
+//     });
+
+//     localStorage.setItem(
+//         STORAGE_KEYS.USER,
+//         JSON.stringify(user)
+//     );
+
+//     return user;
+// };

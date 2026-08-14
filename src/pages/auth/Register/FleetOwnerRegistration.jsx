@@ -12,7 +12,7 @@ import AuthInput from "@/components/auth/AuthInput";
 
 import PhoneInput from "@/components/auth/PhoneInput";
 
-import SocialLogin from "@/components/auth/SocialLogin";
+import SocialButtons from "@/components/auth/SocialButtons";
 import TermsFooter from "@/components/auth/TermsFooter";
 
 import Button from "@/components/ui/Button";
@@ -86,39 +86,7 @@ const FleetOwnerRegistration = () => {
 
             console.log("Navigating to:", ROUTES.VERIFY_EMAIL);
 
-            // navigate(ROUTES.VERIFY_EMAIL, {
-
-            //     state: {
-
-            //         role: "FLEET_OWNER",
-
-            //         companyName,
-
-            //         contactPerson,
-
-            //         fullName: contactPerson,
-
-            //         email,
-
-            //         phoneNumber,
-
-            //         darkText: "Verify",
-
-            //         lightText: "your email",
-
-            //         description: `Enter the verification code sent to ${email}`,
-
-            //         redirectTo: ROUTES.CREATE_PASSWORD,
-
-            //         nextRoute: ROUTES.FLEET_PROFILE,
-
-            //         currentStep: 3,
-
-            //         totalSteps: 5,
-
-            //     },
-
-            // });
+  
             const nextState = {
             role: "FLEET_OWNER",
             companyName,
@@ -168,15 +136,14 @@ const FleetOwnerRegistration = () => {
 
         <AuthContainer>
 
-            <AuthBackButton />
+            <div className="flex items-center gap-3 mt-0">
+                <AuthBackButton />
 
-            <AuthProgressBar
-
-                current={2}
-
-                total={5}
-
-            />
+                <AuthProgressBar
+                    current={2}
+                    total={5}
+                />
+            </div>
 
             <AuthHeader
                 title={
@@ -198,19 +165,15 @@ const FleetOwnerRegistration = () => {
                 }
             />
 
-            <div className="space-y-5 mt-8">
+            <div className="space-y-5 mt-6">
 
 
                 <AuthInput
 
                     label="Business Email"
-
                     type="email"
-
                     placeholder="company@email.com"
-
                     value={email}
-
                     onChange={(e) => setEmail(e.target.value)}
 
                 />
@@ -239,16 +202,12 @@ const FleetOwnerRegistration = () => {
 
             }
 
-            <div className="mt-10">
+            <div className="mt-9">
 
                 <Button
-
                     variant="dark"
-
                     loading={loading}
-
                     disabled={!isValid}
-
                     onClick={handleContinue}
 
                 >
@@ -259,7 +218,8 @@ const FleetOwnerRegistration = () => {
                 
 
             </div>
-            <SocialLogin />
+        
+            <SocialButtons role="FLEET_OWNER" redirectTo={ROUTES.FLEET_VEHICLES} navigate={navigate} />
             <TermsFooter />
 
         </AuthContainer>

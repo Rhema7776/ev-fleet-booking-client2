@@ -34,13 +34,9 @@ const EnterprisePartnerRegistration = () => {
         await registerUser({
 
             fullName: contactPerson,
-
             email: businessEmail,
-
             phone: phoneNumber,
-
             role: "ENTERPRISE_PARTNER",
-
         });
 
         navigate(
@@ -92,13 +88,15 @@ const EnterprisePartnerRegistration = () => {
     return (
 
         <AuthContainer>
+            <div className="flex items-center gap-3">
+                <AuthBackButton />
 
-            <AuthBackButton />
+                <AuthProgressBar
+                    current={1}
+                    total={5}
+                />
 
-            <AuthProgressBar
-                current={1}
-                total={5}
-            />
+            </div>
 
             <AuthHeader
                 stacked

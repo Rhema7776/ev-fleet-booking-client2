@@ -7,6 +7,10 @@ const AuthPage = ({ children }) => {
                 min-h-screen
                 flex
                 flex-col
+                w-full
+                p-0
+                m-0
+                
             "
         >
 

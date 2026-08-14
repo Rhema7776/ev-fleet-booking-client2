@@ -12,6 +12,7 @@ import individualSuccess from "@/assets/images/individual-success.svg";
 const illustrations = {
     password: padlockIcon,
     individual: individualSuccess,
+    
     // enterprise: enterpriseSuccess,
 };
 
@@ -27,7 +28,11 @@ const SuccessScreen = ({
 
     return (
 
-        <AuthContainer>
+        <main   style={{
+                        background:
+                            "linear-gradient(180deg, rgba(8,30,25,0.3) 0%, #23846E 100%)",
+                    }}
+            >
 
             <div
                 className="
@@ -80,7 +85,7 @@ const SuccessScreen = ({
 
             </div>
 
-        </AuthContainer>
+        </main>
 
     );
 

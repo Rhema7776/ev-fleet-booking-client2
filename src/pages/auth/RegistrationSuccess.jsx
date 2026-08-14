@@ -11,7 +11,6 @@ const RegistrationSuccess = () => {
 
     return (
 
-        <AuthContainer >
 
             <main
                 className="
@@ -91,7 +90,7 @@ const RegistrationSuccess = () => {
 
             </main>
 
-        </AuthContainer>
+       
 
     );
 

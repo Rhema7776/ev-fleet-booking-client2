@@ -9,61 +9,10 @@ const variants = {
     transparent: "bg-transparent",
 };
 
-// const AuthContainer = ({
-//     children,
-//     variant = "white",
-//     className = "",
-// }) => {
-
-//     return (
-
-//         <div
-//             className="
-                
-//                 min-h-screen
-//                 flex
-//                 items-center
-//                 justify-center
-//                 px-5
-//                 py-8
-//             "
-//         >
-
-//             <div
-
-//                 className={clsx(
-
-//                     `
-//                     w-full
-//                     max-w-[430px]
-//                     min-h-[900px]
-//                     rounded-[42px]
-//                     overflow-hidden
-//                     shadow-2xl
-//                     `,
-
-//                     variants[variant],
-
-//                     className
-
-//                 )}
-
-//             >
-
-//                 {children}
-
-//             </div>
-
-//         </div>
-
-//     );
-
-// };
-
 const AuthContainer = ({
     children,
     variant = "white",
-    padded = true,
+   
 }) => {
 
     
@@ -73,20 +22,23 @@ const AuthContainer = ({
         <div
             className="
                 min-h-screen
-                bg-white
-                px-6
-                py-8
                 flex
-                justify-center
+                flex-col
+                bg-white
+                py-2
+                px-5
+                m-0
+                
             "
         >
 
             <div
                 className="
                     w-full
-                    max-w-[430px]
-                    flex
-                    flex-col
+                    flex-1
+                    p-0
+                    m-0
+                
                 "
             >
 
@@ -96,25 +48,7 @@ const AuthContainer = ({
 
         </div>
 
-        // <div className=" min-h-screen flex items-center justify-center p-6">
 
-        //     <div
-        //         className={""}
-        //     >
-
-        //         {
-        //             padded ? (
-
-        //                 <div className="px-6 py-8 h-full">
-        //                     {children}
-        //                 </div>
-
-        //             ) : children
-        //         }
-
-        //     </div>
-
-        // </div>
 
     );
 

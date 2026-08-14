@@ -43,7 +43,7 @@ export const ROUTES = {
 
     FLEET_DASHBOARD: "/fleet",
 
-    FLEET_TRIPS: "/fleet/trips",
+    FLEET_BOOKINGS: "/fleet/bookings",
 
     FLEET_VEHICLES: "/fleet/vehicles",
 

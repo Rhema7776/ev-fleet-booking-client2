@@ -29,6 +29,7 @@ const AuthSuccessLayout = ({
 
             className="
                 relative
+                isolate
                 overflow-hidden
                 min-h-screen
                 flex
@@ -41,41 +42,26 @@ const AuthSuccessLayout = ({
             "
 
         >
-
             {/* Animated Background */}
 
             <motion.div
-
-                className="
-                    absolute
-                    inset-0
-                    -z-20
-                "
-
+                className="absolute inset-0 -z-20"
+                initial={{
+                    backgroundImage:
+                        "linear-gradient(180deg,#33D05A 0%,#0E7A46 48%,#021813 100%)",
+                }}
                 animate={{
-
-                    background: [
-
+                    backgroundImage: [
                         "linear-gradient(180deg,#33D05A 0%,#0E7A46 48%,#021813 100%)",
-
-                        "linear-gradient(180deg,#30C254 0%,#0A5D38 52%,#01120E 100%)",
-
-                        "linear-gradient(180deg,#33D05A 0%,#0E7A46 48%,#021813 100%)",
-
+                        "linear-gradient(180deg,#30C254 0%,#0A5D38 30%,#01120E 100%)",
+                        // "linear-gradient(180deg,#33D05A 0%,#0E7A46 48%,#021813 100%)",
                     ],
-
                 }}
-
                 transition={{
-
                     duration: 8,
-
                     repeat: Infinity,
-
                     ease: "easeInOut",
-
                 }}
-
             />
 
             {/* Floating Gradient Orb */}

@@ -13,8 +13,8 @@ const variants = {
     },
 
     light: {
-        button: "bg-[#F3F4F6] text-[#071B14]",
-        circle: "bg-white text-[#071B14]",
+       button: "bg-[#FFFFFF]  text-[#040610]",
+        circle: "bg-[#040610] text-[#FFFFFF]", 
     },
 
     outline: {
@@ -62,7 +62,7 @@ const ActionButton = ({
             onClick={onClick}
             className={clsx(
                 "w-full",
-                "h-[64px]",
+                "h-[51px]",
                 "rounded-full",
                 "flex",
                 "items-center",
@@ -87,8 +87,9 @@ const ActionButton = ({
 
             <span
                 className={clsx(
-                    "w-[52px]",
-                    "h-[52px]",                    "rounded-full",
+                    "w-[40px]",
+                    "h-[40px]",
+                    "rounded-full",
                     "flex",
                     "items-center",
                     "justify-center",

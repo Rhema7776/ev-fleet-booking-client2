@@ -198,14 +198,15 @@ const ForgotPassword = () => {
     return (
 
         <AuthContainer>
-
+            
             <AuthBackButton />
 
             <AuthHeader
-                darkText="Forgot"
-                lightText="password?"
+                darkText="Reset your" 
+                
+                lightText="password."
                 description="Enter your email address and we'll send you a verification code."
-            />
+            /> 
 
             <form
                 onSubmit={handleSubmit}
@@ -250,6 +251,10 @@ const ForgotPassword = () => {
                 linkText="Log in"
                 to={ROUTES.LOGIN}
             />
+
+
+            
+
 
         </AuthContainer>
 

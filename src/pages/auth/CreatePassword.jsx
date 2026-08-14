@@ -90,13 +90,15 @@ const CreatePassword = () => {
     return (
 
         <AuthContainer>
+            <div className="flex items-center gap-3">
+                <AuthBackButton />
+                
+                <AuthProgressBar
+                    current={state?.currentStep ?? 2}
+                    total={state?.totalSteps ?? 4}
+                />
+            </div>
 
-            <AuthBackButton />
-
-            <AuthProgressBar
-                current={state?.currentStep ?? 2}
-                total={state?.totalSteps ?? 4}
-            />
 
             <AuthHeader
                 darkText="Create"

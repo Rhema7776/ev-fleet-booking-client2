@@ -135,13 +135,17 @@ const OTPVerification = () => {
     };
 
     return (
+        
         <AuthContainer>
-            <AuthBackButton />
+                        
+            <div className="flex items-center gap-3 mt-3 ">
+                <AuthBackButton />
 
-            <AuthProgressBar
-                current={currentStep}
-                total={totalSteps}
-            />
+                <AuthProgressBar
+                    current={currentStep}
+                    total={totalSteps}
+                />
+            </div>
 
             <AuthHeader
                 darkText={darkText}

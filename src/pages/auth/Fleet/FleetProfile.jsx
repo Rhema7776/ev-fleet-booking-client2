@@ -1,205 +1,292 @@
-import { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
 
+import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import AuthContainer from "@/components/auth/AuthContainer";
 import AuthBackButton from "@/components/auth/AuthBackButton";
 import AuthHeader from "@/components/auth/AuthHeader";
-import AuthProgressBar from "@/components/auth/AuthProgressBar";
-import AuthInput from "@/components/auth/AuthInput";
+import SmallAuthInput from "@/components/auth/SmallAuthInput";
 import Button from "@/components/ui/Button";
-
+import CityMultiSelect from "@/components/auth/CityMultiSelect";
+import CompanyLogoUpload from "@/components/auth/CompanyLogoUpload";
+import SearchableSelect from "@/components/auth/SearchableSelect";
 import { ROUTES } from "@/constants/routes";
 
 const FleetProfile = () => {
 
     const navigate = useNavigate();
-
     const { state } = useLocation();
 
     const [businessAddress, setBusinessAddress] = useState("");
-
-    const [operatingCities, setOperatingCities] = useState("");
-
-    const [bankName, setBankName] = useState("");
+    const [operatingCities, setOperatingCities] = useState([]);
+    const [bankName, setBankName] = useState("");       // display label only
+    const [bankCode, setBankCode] = useState("");        // drives SearchableSelect + resolve
+    const [bankOptions, setBankOptions] = useState([]);
+    const [bankLoading, setBankLoading] = useState(false);
 
     const [accountNumber, setAccountNumber] = useState("");
+    const [accountName, setAccountName] = useState("");  // read-only, auto-filled via resolve
+    const [resolvingAccount, setResolvingAccount] = useState(false);
 
-    const [accountName, setAccountName] = useState("");
+    const [companyLogo, setCompanyLogo] = useState(null);
 
-    const isValid = [
+    /*
+    |--------------------------------------------------------------------------
+    | Search banks (debounced call comes from SearchableSelect itself)
+    |--------------------------------------------------------------------------
+    */
+    const searchBanks = async (query) => {
 
-        businessAddress,
+        if (!query.trim()) {
+            setBankOptions([]);
+            return;
+        }
 
-        operatingCities,
+        try {
+            setBankLoading(true);
 
-        bankName,
+            const response = await fetch(
+                `http://localhost:3000/api/banks/search?country=NG&search=${encodeURIComponent(query)}`
+            );
 
-        accountNumber,
+            if (!response.ok) {
+                throw new Error("Failed to search banks");
+            }
 
-        accountName,
+            const data = await response.json();
 
-    ].every(value => value.trim());
+            setBankOptions(data.banks || []);
+
+        } catch (error) {
+            console.error("Bank search failed:", error);
+            setBankOptions([]);
+        } finally {
+            setBankLoading(false);
+        }
+    };
+
+    /*
+    |--------------------------------------------------------------------------
+    | Resolve account name once bank + a full account number are set
+    |--------------------------------------------------------------------------
+    */
+    useEffect(() => {
+
+        const resolveAccount = async () => {
+
+            if (!bankCode || accountNumber.trim().length !== 10) {
+                setAccountName("");
+                return;
+            }
+
+            try {
+                setResolvingAccount(true);
+
+                const response = await fetch(
+                    `http://localhost:3000/api/banks/resolve?accountNumber=${accountNumber}&bankCode=${bankCode}`
+                );
+
+                if (!response.ok) {
+                    throw new Error("Could not resolve account");
+                }
+
+                const data = await response.json();
+
+                setAccountName(data.accountName || "");
+
+            } catch (error) {
+                console.error("Account resolve failed:", error);
+                setAccountName("");
+            } finally {
+                setResolvingAccount(false);
+            }
+        };
+
+        resolveAccount();
+
+    }, [bankCode, accountNumber]);
+
+    const isValid =
+        businessAddress.trim() &&
+        operatingCities.length > 0 &&
+        bankCode.trim() &&
+        accountNumber.trim() &&
+        accountName.trim();
 
     const handleContinue = () => {
 
         navigate(
-
             ROUTES.FLEET_SUCCESS,
-
             {
-
                 state: {
-
                     ...state,
-
                     businessAddress,
-
                     operatingCities,
-
                     bankName,
-
+                    bankCode,
                     accountNumber,
-
                     accountName,
-
+                    logoPreview: companyLogo?.preview || null,
                 },
-
             }
-
         );
 
     };
 
     return (
-
         <AuthContainer>
+            <div
+                className="
+                    -mx-5
+                    -mt-2
+                    min-h-screen
+                    bg-[#081E19]
+                    flex
+                    flex-col
+                    overflow-hidden
+                "
+            >
+                {/* ================= HEADER ================= */}
+                <div
+                    className="
+                        px-5
+                        pt-3
+                        pb-4
+                        shrink-0
+                    "
+                >
+                    {/* Back + Skip */}
+                    <div className="flex items-center justify-between">
+                        <AuthBackButton />
 
-            <AuthBackButton />
+                        <button
+                            type="button"
+                            onClick={() => navigate(ROUTES.DASHBOARD)}
+                            className="
+                                text-white/60
+                                text-sm
+                                font-semibold
+                                hover:text-white
+                                transition-colors
+                            "
+                        >
+                            Skip for now
+                        </button>
+                    </div>
 
-            <AuthProgressBar
+                    {/* Header */}
+                    <div>
+                        <AuthHeader
+                            titleClassName="text-center"
+                            stacked
+                            lightText="Complete"
+                            brightGreenText="your profile"
+                            description="Add extra business details to enhance your experience. You can always change this later."
+                        />
+                    </div>
+                </div>
 
-                current={5}
-
-                total={5}
-
-            />
-
-            <AuthHeader
-
-                stacked
-
-                darkText="Complete"
-
-                lightText="your profile"
-
-                description="Help us set up your fleet account."
-
-            />
-
-            <div className="space-y-5 mt-8">
-
-                <AuthInput
-
-                    label="Business Address"
-
-                    placeholder="Enter business address"
-
-                    value={businessAddress}
-
-                    onChange={(e) =>
-
-                        setBusinessAddress(e.target.value)
-
-                    }
-
-                />
-
-                <AuthInput
-
-                    label="Operating Cities"
-
-                    placeholder="e.g Lagos, Abuja"
-
-                    value={operatingCities}
-
-                    onChange={(e) =>
-
-                        setOperatingCities(e.target.value)
-
-                    }
-
-                />
-
-                <AuthInput
-
-                    label="Bank Name"
-
-                    placeholder="Select Bank"
-
-                    value={bankName}
-
-                    onChange={(e) =>
-
-                        setBankName(e.target.value)
-
-                    }
-
-                />
-
-                <AuthInput
-
-                    label="Account Number"
-
-                    placeholder="0123456789"
-
-                    value={accountNumber}
-
-                    onChange={(e) =>
-
-                        setAccountNumber(e.target.value)
-
-                    }
-
-                />
-
-                <AuthInput
-
-                    label="Account Name"
-
-                    placeholder="John Doe"
-
-                    value={accountName}
-
-                    onChange={(e) =>
-
-                        setAccountName(e.target.value)
-
-                    }
-
-                />
-
-            </div>
-
-            <div className="mt-10">
-
-                <Button
-
-                    variant="dark"
-
-                    disabled={!isValid}
-
-                    onClick={handleContinue}
-
+                {/* ================= FORM SHEET ================= */}
+                <div
+                    className="
+                        flex-1
+                        bg-white
+                        rounded-t-[28px]
+                        px-5
+                        pt-5
+                        pb-6
+                        flex
+                        flex-col
+                        min-h-0
+                    "
                 >
 
-                    Save and Continue
+                    <CompanyLogoUpload
+                        value={companyLogo}
+                        onChange={setCompanyLogo}
+                    />
 
-                </Button>
+                    {/* Form */}
+                    <div className="space-y-5 mt-5">
 
+                        {/* Business Address */}
+                        <SmallAuthInput
+                            label="Business Address"
+                            placeholder="e.g. 123 Wayne Logistics Way, Ikeja"
+                            value={businessAddress}
+                            onChange={(e) =>
+                                setBusinessAddress(e.target.value)
+                            }
+                        />
+
+                        {/* Operating Cities */}
+                        <CityMultiSelect
+                            label="Operating Cities"
+                            placeholder="Lagos, Abuja"
+                            value={operatingCities}
+                            onChange={setOperatingCities}
+                        />
+
+                        {/* Account Number */}
+                        <SmallAuthInput
+                            label="Bank number"
+                            placeholder="0000000000"
+                            value={accountNumber}
+                            onChange={(e) =>
+                                setAccountNumber(e.target.value)
+                            }
+                        />
+
+                        {/* Bank + Account Name */}
+                        <div className="grid grid-cols-2 gap-3">
+
+                            <SearchableSelect
+                                label="Add bank"
+                                placeholder="Select bank"
+                                value={bankCode}
+                                onChange={(selectedCode) => {
+                                    setBankCode(selectedCode);
+
+                                    const match = bankOptions.find(
+                                        (option) => option.value === selectedCode
+                                    );
+
+                                    setBankName(match?.label || "");
+                                }}
+                                options={bankOptions}
+                                loading={bankLoading}
+                                onSearch={searchBanks}
+                            />
+
+                            <SmallAuthInput
+                                compact
+                                label="Account name"
+                                placeholder={
+                                    resolvingAccount
+                                        ? "Resolving..."
+                                        : "Auto-filled after entering account number"
+                                }
+                                value={accountName}
+                                readOnly
+                                disabled
+                            />
+
+                        </div>
+
+                    </div>
+
+                    {/* Button */}
+                    <div className="mt-auto pt-8">
+                        <Button
+                            variant="dark"
+                            disabled={!isValid}
+                            onClick={handleContinue}
+                        >
+                            Save and Continue
+                        </Button>
+                    </div>
+                </div>
             </div>
-
         </AuthContainer>
-
     );
 
 };

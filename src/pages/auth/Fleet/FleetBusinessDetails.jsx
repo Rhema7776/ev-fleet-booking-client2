@@ -9,7 +9,6 @@ import AuthInput from "@/components/auth/AuthInput";
 import AuthPage from "@/components/auth/AuthPage";
 import TermsFooter from "@/components/auth/TermsFooter";
 import Button from "@/components/ui/Button";
-
 import { ROUTES } from "@/constants/routes";
 
 const FleetBusinessDetails = () => {
@@ -22,9 +21,15 @@ const FleetBusinessDetails = () => {
 
     const [contactPerson, setContactPerson] = useState("");
 
+    
+
+
+
     const isValid =
     companyName.trim().length > 0 &&
     contactPerson.trim().length > 0;
+
+
 
     const handleContinue = () => {
 
@@ -47,12 +52,14 @@ const FleetBusinessDetails = () => {
         <AuthContainer>
             <AuthPage>
 
-            <AuthBackButton />
+            <div className="flex items-center gap-3">
+                <AuthBackButton />
 
-            <AuthProgressBar
-                current={1}
-                total={5}
-            />
+                <AuthProgressBar
+                    current={1}
+                    total={5}
+                />
+            </div>
 
             <AuthHeader
                 title={
@@ -108,6 +115,7 @@ const FleetBusinessDetails = () => {
                 </Button>
 
             </div>
+           
             <TermsFooter />
             </AuthPage>
 

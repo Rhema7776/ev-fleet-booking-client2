@@ -1,9 +1,6 @@
 import { useLocation, useNavigate } from "react-router-dom";
-
-import AuthContainer from "@/components/auth/AuthContainer";
-
-import Button from "@/components/ui/Button";
-
+;
+import ActionButton from "@/components/ui/ActionButton";
 import successImage from "@/assets/images/fleetsuccess.svg";
 
 import { ROUTES } from "@/constants/routes";
@@ -15,50 +12,62 @@ const FleetSuccess = () => {
     const { state } = useLocation();
 
     const companyName =
-
         state?.companyName ||
-
         "Fleet Owner";
 
     return (
 
-        <AuthContainer>
+        <main
+            className="min-h-screen px-6"
+            style={{
+                background:
+                    "linear-gradient(180deg, rgba(8,30,25,0.3) 0%, #23846E 100%)",
+            }}
+        >
 
-            <div className="flex flex-col items-center justify-center min-h-screen text-center">
+            <div className="
+                min-h-screen
+                flex
+                flex-col
+                items-center
+                justify-center
+                text-center
+                bg-[#FFFFFF]
+            ">
 
+              
                 <img
-
                     src={successImage}
-
                     alt="Success"
+                    className=" "
+               />
 
-                    className="w-64"
-
-                />
-
-                <h1 className="mt-10 text-[34px] font-black">
-
+                <h1 className="
+                    text-[32px]
+                    font-black
+                ">
                     Welcome,
-
                     <br />
-
                     {companyName}
-
                 </h1>
 
-                <p className="mt-4 text-gray-500">
-
+                <p className="
+                    text-sm
+                ">
                     Your fleet account has been created successfully.
-
                 </p>
 
-                <div className="mt-12 w-full">
+                <div className=" w-full mt-4">
+
                     <ActionButton
                         variant="fleetSuccess"
-                        onClick={() => navigate(ROUTES.FLEET_DASHBOARD)}
+                        onClick={() =>
+                            navigate(ROUTES.FLEET_DASHBOARD)
+                        }
                     >
                         Add vehicles
                     </ActionButton>
+
                     <button
                         className="
                             mt-5
@@ -68,7 +77,9 @@ const FleetSuccess = () => {
                             bg-[#F3F4F6]
                             font-semibold
                         "
-                        onClick={() => navigate(ROUTES.FLEET_DASHBOARD)}
+                        onClick={() =>
+                            navigate(ROUTES.FLEET_DASHBOARD)
+                        }
                     >
                         I'll do this later
                     </button>
@@ -77,10 +88,9 @@ const FleetSuccess = () => {
 
             </div>
 
-        </AuthContainer>
+        </main>
 
     );
-
 };
 
 export default FleetSuccess;

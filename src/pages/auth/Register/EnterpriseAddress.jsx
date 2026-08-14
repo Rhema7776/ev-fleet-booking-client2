@@ -21,13 +21,15 @@ const EnterpriseAddress = () => {
     return (
 
         <AuthContainer>
+            <div className="flex items-center gap-3">
+                <AuthBackButton />
 
-            <AuthBackButton />
+                <AuthProgressBar
+                    current={state?.currentStep ?? 2}
+                    total={state?.totalSteps ?? 4}
+                />
+            </div>
 
-            <AuthProgressBar
-                current={state?.currentStep ?? 2}
-                total={state?.totalSteps ?? 4}
-            />
 
             <AuthHeader
                 darkText="Business"

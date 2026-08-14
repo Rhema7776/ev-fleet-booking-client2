@@ -2,6 +2,7 @@ import AuthSuccessLayout from "./AuthSuccessLayout";
 
 const IllustrationSuccess = ({
     image,
+    image2,
     title,
     description,
     buttonText,
@@ -18,10 +19,15 @@ const IllustrationSuccess = ({
             <img
                 src={image}
                 alt=""
-                className="w-64 mb-10"
+                className="w-[199 px] h-[91px] object-contain"
+            />
+            <img
+                src={image2}
+                alt=""
+                className="w-[214px] h-[58px] object-contain"
             />
 
-            <h1 className="text-white text-5xl font-black leading-none whitespace-pre-line">
+            <h1 className="text-white text-3xl header-font leading-none whitespace-pre-line">
 
                 {title}
 

@@ -18,6 +18,8 @@ export const API = {
 
         CREATE_PASSWORD: "/auth/create-password",
 
+        SOCIAL_LOGIN: "/auth/social-login",
+
     },
 
 };

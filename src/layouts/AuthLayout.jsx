@@ -10,7 +10,7 @@ const AuthLayout = () => {
                 flex
                 items-center
                 justify-center
-                p-8
+                
             "
         >
 

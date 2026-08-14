@@ -45,32 +45,6 @@ const SocialLogin = () => {
                 "
             >
 
-                {/* {[google, facebook, apple].map((icon) => (
-
-                    <button
-                        key={icon}
-                        className="
-                            w-16
-                            h-16
-                            rounded-full
-                            bg-[#F4F4F4]
-                            flex
-                            items-center
-                            justify-center
-                            transition
-                            hover:scale-105
-                        "
-                    >
-
-                        <img
-                            src={icon}
-                            className="w-8 h-8"
-                            alt=""
-                        />
-
-                    </button>
-
-                ))} */}
                 <div className="flex justify-center gap-6 mt-8">
 
                 <button

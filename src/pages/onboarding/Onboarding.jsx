@@ -41,29 +41,26 @@ const Onboarding = () => {
             bg-white
             flex
             flex-col
-            px-5
-            py-8
+            py-5
         ">
-
-
             <ProgressBar
                 current={currentSlide}
                 total={onboardingData.length}
             />
 
-
-            <div className="flex justify-center mt-12">
+            <div className=" flex justify-center ">
 
                 <img
                     src={carImage}
                     alt="Vehicle"
-                    className="w-full max-w-[674px]"
+                    className="w-full max-w-[670px]"
                 />
 
             </div>
-
-
-            <div key={currentSlide}
+            <div
+                className="px-5"
+            >
+             <div key={currentSlide}
                 className="flex-1 flex items-center justify-center transition-all duration-700"
              >
 
@@ -74,7 +71,7 @@ const Onboarding = () => {
                 />
 
             </div>
-            <div className="pb-8 space-y-6">
+            <div className="pb-4 space-y-6">
 
                 <Button onClick={() => {
                     console.log("Going to:", ROUTES.REGISTRATION_LOADING);
@@ -85,11 +82,22 @@ const Onboarding = () => {
                         
                 </Button>
 
-                <AuthFooter />
+
 
             </div>
 
+            <AuthFooter
+                text="Already registered?"
+                linkText="Log in"
+                to={ROUTES.LOGIN}
+            />
 
+
+
+        </div>
+           
+
+           
 
         </main>
 

@@ -10,24 +10,17 @@ import SocialButtons from "@/components/auth/SocialButtons";
 import TermsText from "@/components/auth/TermsText";
 import AuthFooter from "@/components/auth/AuthFooter";
 import AuthProgressBar from "@/components/auth/AuthProgressBar";
-
 import Button from "@/components/ui/Button";
 
 import { registerUser } from "@/services/auth/authService";
 import { ROUTES } from "@/constants/routes";
 
 const IndividualPartnerRegistration = () => {
-
     const navigate = useNavigate();
-
     const [fullName, setFullName] = useState("");
-
     const [email, setEmail] = useState("");
-
     const [loading, setLoading] = useState(false);
-
     const [error, setError] = useState("");
-
     const handleRegister = async () => {
 
         if (!fullName.trim()) {
@@ -91,21 +84,13 @@ const IndividualPartnerRegistration = () => {
                 },
 
             });
-
         }
-
         catch (err) {
-
             setError(
-
                 err.response?.data?.message ||
-
                 "Registration failed."
-
             );
-
         }
-
         finally {
 
             setLoading(false);
@@ -117,13 +102,15 @@ const IndividualPartnerRegistration = () => {
     return (
 
         <AuthContainer>
+            <data className="flex items-center gap-3">
+                <AuthBackButton />
 
-            <AuthBackButton />
+                <AuthProgressBar
+                    current={1}
+                    total={4}
+                />
 
-            <AuthProgressBar
-                current={1}
-                total={4}
-            />
+            </data>
 
             <AuthHeader
                 stacked
@@ -132,7 +119,7 @@ const IndividualPartnerRegistration = () => {
                 description="Enter your details to continue."
             />
 
-            <div className="space-y-5 mt-8">
+            <div className="space-y-5 mt-6">
 
                 <AuthInput
                     label="Full Name"
@@ -151,9 +138,7 @@ const IndividualPartnerRegistration = () => {
 
             </div>
 
-            <AuthDivider />
-
-            <SocialButtons />
+            <SocialButtons role="INDIVIDUAL_PARTNER" redirectTo={ROUTES.DASHBOARD} navigate={navigate} />
 
             <AuthFooter
                 text="Already have an account?"

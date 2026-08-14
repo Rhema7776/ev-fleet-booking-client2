@@ -1,6 +1,6 @@
 import {
 
-    LayoutGrid,
+    Home,
 
     Truck,
 
@@ -8,7 +8,7 @@ import {
 
     Wallet,
 
-    Menu,
+    MoreHorizontal,
 
 } from "lucide-react";
 
@@ -28,7 +28,7 @@ const items = [
 
     {
 
-        icon: LayoutGrid,
+        icon: Home,
 
         label: "Home",
 
@@ -38,6 +38,15 @@ const items = [
 
     {
 
+        icon: Route,
+
+        label: "Bookings",
+
+        path: ROUTES.FLEET_BOOKINGS,
+
+    },
+        {
+
         icon: Truck,
 
         label: "Fleet",
@@ -45,17 +54,6 @@ const items = [
         path: ROUTES.FLEET_VEHICLES,
 
     },
-
-    {
-
-        icon: Route,
-
-        label: "Trips",
-
-        path: ROUTES.FLEET_TRIPS,
-
-    },
-
     {
 
         icon: Wallet,
@@ -68,7 +66,7 @@ const items = [
 
     {
 
-        icon: Menu,
+        icon: MoreHorizontal,
 
         label: "More",
 
