@@ -3,6 +3,7 @@ import { Search, SlidersHorizontal, Plus, Zap, Car, ChevronRight } from "lucide-
 
 import { listVehicles, type Vehicle } from "@/services/vehicle/vehicleService";
 import AddVehicleModal from "@/components/fleet/AddVehicleModal";
+import CategoryVehicleIllustration from "@/components/fleet/CategoryVehicleIllustration";
 
 const TABS = ["All cars", "ECONOMY", "EXECUTIVE", "VIP"] as const;
 
@@ -39,7 +40,7 @@ function VehicleCard({ v, onSelect }: { v: Vehicle; onSelect: (v: Vehicle) => vo
         {v.imageUrl ? (
           <img src={v.imageUrl} alt={v.name} className="h-full w-full object-cover" />
         ) : (
-          <Car className="h-8 w-8 text-zinc-300" />
+          <CategoryVehicleIllustration category={v.category} className="h-full w-full" />
         )}
         {v.isElectric && (
           <span className="absolute right-1.5 top-1.5 flex h-5 w-5 items-center justify-center rounded-full bg-white/90 shadow-sm">
@@ -193,7 +194,7 @@ export default function Fleet() {
               {selected.imageUrl ? (
                 <img src={selected.imageUrl} alt={selected.name} className="h-full w-full rounded-xl object-cover" />
               ) : (
-                <Car className="h-10 w-10 text-zinc-300" />
+                <CategoryVehicleIllustration category={selected.category} className="h-full w-full rounded-xl" />
               )}
             </div>
             <p className="text-[16px] font-bold text-zinc-900">{selected.name}</p>

@@ -51,6 +51,7 @@ import FleetOwnerRegistration from "./pages/auth/Register/FleetOwnerRegistration
 import FleetProfile from "./pages/auth/Fleet/FleetProfile";
 import FleetSuccess from "./pages/auth/Fleet/FleetSuccess";
 import FleetTransition from "./pages/auth/Fleet/FleetTransition";
+import FleetOwnerProfileGuard from "./components/FleetOwnerProfileGuard";
 import Trips from "./pages/fleet/Trips";
 import Fleet from "./pages/fleet/Fleet";
 import Earnings from "./pages/fleet/Earnings";
@@ -273,6 +274,10 @@ const router = createBrowserRouter([
     {
     path: "/fleet",
 
+    element: <FleetOwnerProfileGuard />,
+
+    children: [
+    {
     element: <FleetLayout />,
 
     children: [
@@ -303,6 +308,9 @@ const router = createBrowserRouter([
         },
 
     ],
+
+},
+],
 
 },
     {
